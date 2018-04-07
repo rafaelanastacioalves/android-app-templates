@@ -1,0 +1,51 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+
+        google()
+    }
+}
+
+ext {
+    compileSdkVersionExt = 26
+    buildToolsVersionExt = "26.0.2"
+    minSdkVersionExt = 15
+    targetSdkVersionExt = 26
+    crashlytics = "2.7.1@aar"
+    androidSupportLibrariesExt = "27.1.0"
+    firebaseUiExt = "3.1.0"
+    firebaseExt = "11.4.2"
+    facebookAndroidExt = "4.27.0"
+    retrofitExt = "2.4.0"
+    okhttp3Ext = "3.10.0"
+    androidConstraintLayout = "1.0.2"
+    jakewhartonStuff = "8.4.0"
+    timberExt = "4.5.1"
+    picassoExt = "2.71828"
+    espressoExt = "3.0.1"
+    mockWebServerExt = "3.8.0"
+    testRunnerExt = "1.0.1"
+
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersionExt
+    buildToolsVersion rootProject.buildToolsVersionExt
+    defaultConfig {
+
+        applicationId "com.example.rafaelanastacioalves"
+        minSdkVersion rootProject.minSdkVersionExt
+        targetSdkVersion rootProject.targetSdkVersionExt
+        versionCode 11
+        versionName "0.1.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    testBuildType "instrumentation"
+    buildTypes {
+
+        buildTypes.each {
+            it.buildConfigField "String", "API_BASE_URL", '"https://private-251c1-rafaelmobicare.apiary-mock.com"'
+            it.buildConfigField "boolean", "IS_TEST", 'false'
+
+        }
+        debug {
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        instrumentation {
+            initWith(buildTypes.debug)
+            testCoverageEnabled = true
+            buildConfigField "String", "API_BASE_URL", '"http://localhost:1234"'
+            buildConfigField "boolean", "IS_TEST", 'true'
+
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:support-v4:26.1.0'
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.espressoExt", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation "com.android.support.test:runner:$rootProject.testRunnerExt"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoExt"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoExt"
+
+
+    implementation "com.android.support:support-annotations:$rootProject.androidSupportLibrariesExt"
+    implementation "com.android.support:recyclerview-v7:$rootProject.androidSupportLibrariesExt"
+    implementation "com.android.support:design:$rootProject.androidSupportLibrariesExt"
+    implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibrariesExt"
+    implementation "com.android.support:support-v4:$rootProject.androidSupportLibrariesExt"
+    implementation "com.squareup.okhttp3:mockwebserver:$rootProject.mockWebServerExt"
+
+    //retrofit + gson
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitExt"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitExt"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3Ext"
+
+    implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibrariesExt"
+    implementation "com.android.support:recyclerview-v7:$rootProject.androidSupportLibrariesExt"
+    implementation "com.android.support:design:$rootProject.androidSupportLibrariesExt"
+
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.androidConstraintLayout"
+    implementation "com.jakewharton:butterknife:$rootProject.jakewhartonStuff"
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoExt"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberExt"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.jakewhartonStuff"
+
+
+}
