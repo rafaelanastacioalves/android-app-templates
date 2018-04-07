@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	app:layout_anchor="@id/trip_package_detail_appbar"
+	app:layout_anchorGravity="top|center"
+	app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+	<android.support.constraint.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".packagedetaillisting.TripPackageDetailActivity">
+
+		<android.support.v7.widget.AppCompatImageView
+			android:id="@+id/trip_package_detail_imageview"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:scaleType="centerCrop"
+			android:transitionName="@string/trip_package_imageview_transition_name"
+			app:layout_constraintDimensionRatio="H,3:2"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_placeholder_map"/>
+
+		<TextView
+			android:id="@+id/trip_package_detail_valor"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/default_internal_margin"
+			android:layout_marginStart="@dimen/default_internal_margin"
+			android:layout_marginTop="@dimen/default_internal_margin"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/trip_package_detail_imageview"
+			tools:text="@string/valor_text"
+			/>
+
+
+		<android.support.v7.widget.AppCompatButton
+			android:id="@+id/trip_package_detail_comprar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/default_internal_margin"
+			android:layout_marginStart="@dimen/default_internal_margin"
+			android:layout_marginTop="8dp"
+			android:text="@string/comprar"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/trip_package_detail_descricao"/>
+
+		<TextView
+			android:id="@+id/trip_package_detail_descricao"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="@dimen/default_internal_margin"
+			android:layout_marginLeft="@dimen/default_internal_margin"
+			android:layout_marginRight="@dimen/default_internal_margin"
+			android:layout_marginStart="@dimen/default_internal_margin"
+			android:layout_marginTop="16dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/trip_package_detail_valor"
+			tools:text="@string/venha_conhecer_orlando"/>
+	</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
+
