@@ -27,6 +27,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -62,7 +63,7 @@ public class TripPackageDetailActivityTest {
 
 
 
-        onView(allOf(withId(R.id.trip_package_detail_comprar), withText(R.string.comprar))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.trip_package_detail_descricao), withText(containsString("mais de 10 parques")))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.trip_package_detail_valor), withText("5000,00"))).check(matches(isDisplayed()));
 
     }
