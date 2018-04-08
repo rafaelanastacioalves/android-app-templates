@@ -3,8 +3,8 @@
 ## Descritpion
 
 Desafio tecnico da empresa Mobicare.
-![picture](/captures/Screenshot_1523145822.png)
-![picture](/captures/Screenshot_1523145868.png)
+![](captures/Screenshot_1523145822.png)
+![](captures/Screenshot_1523145868.png)
 
 ## Buildin
 
