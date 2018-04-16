@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onClick(View view, int position) {
         TripPackage TripPackage = (TripPackage) mTripPackageListAdapter.getItems().get(position);
 
-        AppCompatImageView transitionImageView = view.findViewById(R.id.trip_package_imageview);
+        AppCompatImageView transitionImageView = view.findViewById(R.id.detail_entity_imageview);
         startActivityByVersion(TripPackage, transitionImageView);
 
 

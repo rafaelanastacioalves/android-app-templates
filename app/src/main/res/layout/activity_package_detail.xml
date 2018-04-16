@@ -7,7 +7,7 @@
                                                  tools:context="com.example.rafaelanastacioalves.moby.packagedetaillisting.TripPackageDetailActivity">
 
 	<android.support.design.widget.AppBarLayout
-		android:id="@+id/trip_package_detail_appbar"
+		android:id="@+id/detail_entity_name_detail_appbar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:elevation="@dimen/material_appbar_elevation"

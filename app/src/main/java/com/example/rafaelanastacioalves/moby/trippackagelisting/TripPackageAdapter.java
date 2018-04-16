@@ -41,7 +41,7 @@ public class TripPackageAdapter extends RecyclerView.Adapter<TripPackageViewHold
     @Override
     public TripPackageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new TripPackageViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.trip_package_viewholder, parent, false), recyclerViewClickListener);
+                .inflate(R.layout.detail_entity_viewholder, parent, false), recyclerViewClickListener);
     }
 
 

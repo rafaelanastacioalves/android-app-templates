@@ -20,9 +20,9 @@ public class TripPackageViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @BindView(R.id.trip_package_container) View tripPackageContainer;
     private RecyclerViewClickListener aRecyclerViewListener;
-    @BindView(R.id.trip_package_imageview) ImageView tripPackageImageView;
+    @BindView(R.id.detail_entity_imageview) ImageView tripPackageImageView;
     @BindView(R.id.trip_package_value_textview) TextView tripPackageValueTextView;
-    @BindView(R.id.trip_package_title_textview) TextView tripPackageTitleTextView;
+    @BindView(R.id.detail_entity_title_textview) TextView tripPackageTitleTextView;
 
 
     public TripPackageViewHolder(View itemView, RecyclerViewClickListener clickListener) {

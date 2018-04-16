@@ -64,7 +64,7 @@ public class TripPackageDetailActivityTest {
 
 
         onView(allOf(withId(R.id.trip_package_detail_descricao), withText(containsString("mais de 10 parques")))).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.trip_package_detail_valor), withText("5000,00"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.detail_entity_detail_name), withText("5000,00"))).check(matches(isDisplayed()));
 
     }
 

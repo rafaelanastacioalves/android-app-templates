@@ -35,7 +35,7 @@ public class PackageDetailsFragment extends Fragment implements LoaderManager.Lo
     private String PACKAGE_ID_LOADER_KEY = "package_id_loader_key";
 
 
-    @BindView(R.id.trip_package_detail_valor)
+    @BindView(R.id.detail_entity_detail_name)
     TextView tripPackageDetailValor;
 
     @BindView(R.id.trip_package_detail_imageview)
@@ -72,7 +72,7 @@ public class PackageDetailsFragment extends Fragment implements LoaderManager.Lo
 
 
     private View inflateViews(LayoutInflater inflater, ViewGroup container) {
-        View rootView = inflater.inflate(R.layout.fragment_package_detail_view, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_detail_entity_detail_view, container, false);
         ButterKnife.bind(this, rootView);
         tripPackageDetailComprar.setOnClickListener(this);
         return rootView;
