@@ -7,7 +7,7 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.rafaelanastacioalves.moby.trippackagelisting.MainActivity;
+import com.example.rafaelanastacioalves.moby.entitymainlisting.MainActivity;
 import com.example.rafaelanastacioalves.moby.util.RestServiceTestHelper;
 
 import org.junit.After;
@@ -71,7 +71,6 @@ public class MainActivityTest {
                 )
         );
         onView(allOf(withId(R.id.detail_entity_title_textview), withText("Disney Premium"))).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.trip_package_value_textview), withText("5000,00"))).check(matches(isDisplayed()));
 
     }
 

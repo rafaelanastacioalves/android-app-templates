@@ -4,7 +4,7 @@
                                                  xmlns:tools="http://schemas.android.com/tools"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
-                                                 tools:context="com.example.rafaelanastacioalves.moby.packagedetaillisting.TripPackageDetailActivity">
+                                                 tools:context="com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity">
 
 	<android.support.design.widget.AppBarLayout
 		android:id="@+id/detail_entity_name_detail_appbar"
@@ -27,7 +27,7 @@
 	             app:layout_behavior="@string/appbar_scrolling_view_behavior"
 	             android:layout_width="match_parent"
 	             android:layout_height="match_parent"
-	             tools:context=".packagedetaillisting.TripPackageDetailActivity"
+	             tools:context=".entitydetailing.EntityDetailActivity"
 	             xmlns:android="http://schemas.android.com/apk/res/android"
 	             xmlns:app="http://schemas.android.com/apk/res-auto"
 	             xmlns:tools="http://schemas.android.com/tools" />

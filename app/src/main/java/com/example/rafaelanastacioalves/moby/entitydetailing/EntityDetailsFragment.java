@@ -1,4 +1,4 @@
-package com.example.rafaelanastacioalves.moby.packagedetaillisting;
+package com.example.rafaelanastacioalves.moby.entitydetailing;
 
 
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rafaelanastacioalves.moby.R;
-import com.example.rafaelanastacioalves.moby.entities.TripPackageDetails;
+import com.example.rafaelanastacioalves.moby.entities.EntityDetails;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +27,7 @@ import timber.log.Timber;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PackageDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<TripPackageDetails>, View.OnClickListener {
+public class EntityDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<EntityDetails>, View.OnClickListener {
 
     private static final int PACKAGE_DETAIL_LOADER = 11;
     public static String ARG_PACKAGE_ID;
@@ -41,14 +40,9 @@ public class PackageDetailsFragment extends Fragment implements LoaderManager.Lo
     @BindView(R.id.trip_package_detail_imageview)
     ImageView tripPackageDetailImageview;
 
-    @BindView(R.id.trip_package_detail_comprar)
-    AppCompatButton tripPackageDetailComprar;
-
-    @BindView(R.id.trip_package_detail_descricao)
-    TextView tripPackageDetailDescricao;
 
 
-    public PackageDetailsFragment() {
+    public EntityDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -74,7 +68,6 @@ public class PackageDetailsFragment extends Fragment implements LoaderManager.Lo
     private View inflateViews(LayoutInflater inflater, ViewGroup container) {
         View rootView = inflater.inflate(R.layout.fragment_detail_entity_detail_view, container, false);
         ButterKnife.bind(this, rootView);
-        tripPackageDetailComprar.setOnClickListener(this);
         return rootView;
     }
 
@@ -100,27 +93,26 @@ public class PackageDetailsFragment extends Fragment implements LoaderManager.Lo
 
 
     @Override
-    public Loader<TripPackageDetails> onCreateLoader(int id, Bundle args) {
-        Timber.i("TripPackageDetailActivity - onCreateLoader");
+    public Loader<EntityDetails> onCreateLoader(int id, Bundle args) {
+        Timber.i("EntityDetailActivity - onCreateLoader");
         String packageId = args.getString(PACKAGE_ID_LOADER_KEY);
-        return new PackageDetailAsyncTaskLoader(getContext(), packageId);
+        return new EntityDetailAsyncTaskLoader(getContext(), packageId);
     }
 
     @Override
-    public void onLoadFinished(Loader<TripPackageDetails> loader, TripPackageDetails data) {
-        if (loader instanceof PackageDetailAsyncTaskLoader) {
+    public void onLoadFinished(Loader<EntityDetails> loader, EntityDetails data) {
+        if (loader instanceof EntityDetailAsyncTaskLoader) {
             setViewsWith(data);
 
         }
     }
 
-    private void setViewsWith(TripPackageDetails tripPackageDetails) {
+    private void setViewsWith(EntityDetails entityDetails) {
 
-        tripPackageDetailValor.setText(tripPackageDetails.getPrice());
-        tripPackageDetailDescricao.setText(tripPackageDetails.getDescription());
-        setupActionBarWithTitle(tripPackageDetails.getTitle());
+        tripPackageDetailValor.setText(entityDetails.getPrice());
+        setupActionBarWithTitle(entityDetails.getTitle());
         Picasso.get()
-                .load(tripPackageDetails.getImage_url())
+                .load(entityDetails.getImage_url())
                 .into(tripPackageDetailImageview, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -138,7 +130,7 @@ public class PackageDetailsFragment extends Fragment implements LoaderManager.Lo
 
 
     @Override
-    public void onLoaderReset(Loader<TripPackageDetails> loader) {
+    public void onLoaderReset(Loader<EntityDetails> loader) {
         Timber.i("onLoaderReset");
 
     }

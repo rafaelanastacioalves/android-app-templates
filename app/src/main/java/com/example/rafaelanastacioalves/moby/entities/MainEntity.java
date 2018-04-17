@@ -1,7 +1,7 @@
 package com.example.rafaelanastacioalves.moby.entities;
 
 
-public class TripPackage {
+public class MainEntity {
 
     private String id;
     private String title;
@@ -9,7 +9,7 @@ public class TripPackage {
     private String price_currency;
     private String image_url;
 
-    public TripPackage(){
+    public MainEntity(){
         super();
     }
 
@@ -19,14 +19,6 @@ public class TripPackage {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public String getPrice_currency() {
-        return price_currency;
     }
 
     public String getImage_url() {

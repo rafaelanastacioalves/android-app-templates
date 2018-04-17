@@ -6,8 +6,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.rafaelanastacioalves.moby.packagedetaillisting.PackageDetailsFragment;
-import com.example.rafaelanastacioalves.moby.packagedetaillisting.TripPackageDetailActivity;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity;
 import com.example.rafaelanastacioalves.moby.util.RestServiceTestHelper;
 
 import org.junit.After;
@@ -31,9 +31,9 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 
 @RunWith(AndroidJUnit4.class)
-public class TripPackageDetailActivityTest {
+public class MainEntityDetailActivityTest {
     @Rule
-    public ActivityTestRule<TripPackageDetailActivity> tripPackageDetailActivityTestRule = new ActivityTestRule<TripPackageDetailActivity>(TripPackageDetailActivity.class, true, false);
+    public ActivityTestRule<EntityDetailActivity> tripPackageDetailActivityTestRule = new ActivityTestRule<EntityDetailActivity>(EntityDetailActivity.class, true, false);
     private String fileNameTripPackageDetailOKResponse = "package_detail_ok_response.json";
     private MockWebServer server;
     private String MOCK_PACKAGE_ID = "01";
@@ -58,12 +58,11 @@ public class TripPackageDetailActivityTest {
         );
 
         Intent intent = new Intent();
-        intent.putExtra(PackageDetailsFragment.ARG_PACKAGE_ID, MOCK_PACKAGE_ID);
+        intent.putExtra(EntityDetailsFragment.ARG_PACKAGE_ID, MOCK_PACKAGE_ID);
         tripPackageDetailActivityTestRule.launchActivity(intent);
 
 
 
-        onView(allOf(withId(R.id.trip_package_detail_descricao), withText(containsString("mais de 10 parques")))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.detail_entity_detail_name), withText("5000,00"))).check(matches(isDisplayed()));
 
     }

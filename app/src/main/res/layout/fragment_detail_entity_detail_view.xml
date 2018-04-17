@@ -13,7 +13,7 @@
 	<android.support.constraint.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:context=".packagedetaillisting.TripPackageDetailActivity">
+		tools:context=".entitydetailing.EntityDetailActivity">
 
 		<android.support.v7.widget.AppCompatImageView
 			android:id="@+id/trip_package_detail_imageview"
