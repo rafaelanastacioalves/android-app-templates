@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     private static final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    private static final AppInterceptor appInterceptor = new AppInterceptor();
 
     private static final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -23,6 +24,7 @@ public class ServiceGenerator {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Retrofit retrofit = builder.client(httpClient
                 .addInterceptor(interceptor)
+                .addInterceptor(appInterceptor)
                 .build()).build();
         return retrofit.create(serviceClass);
     }
