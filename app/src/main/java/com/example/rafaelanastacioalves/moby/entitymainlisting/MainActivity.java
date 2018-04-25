@@ -1,10 +1,13 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.arch.lifecycle.ViewModelStoreOwner;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
@@ -22,33 +25,42 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<MainEntity>>, RecyclerViewClickListener {
-    private final LoaderManager.LoaderCallbacks<List<MainEntity>> mCallback = MainActivity.this;
+public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
     private final RecyclerViewClickListener mClickListener = this;
     private MainEntityAdapter mTripPackageListAdapter;
-    private int tripPackageListLoaderId = 10 ;
+    private int tripPackageListLoaderId = 10;
     private RecyclerView mRecyclerView;
+    private LiveDataMainEntityListViewModel mLiveDataMainEntityListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupViews();
         setupRecyclerView();
-        initLoader();
+        subscribe();
+        loadData();
+
+    }
+
+    private void loadData() {
+        mLiveDataMainEntityListViewModel.loadData();
+    }
+
+    private void subscribe() {
+        mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel.class);
+        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<List<MainEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<MainEntity> mainEntities) {
+                Timber.d("On Changed");
+                populateRecyclerView(mainEntities);
+            }
+        });
     }
 
     private void setupViews() {
         setContentView(R.layout.activity_main);
         Timber.tag("LifeCycles");
         Timber.i("onCreate Activity");
-    }
-
-    private void initLoader() {
-        if (getSupportLoaderManager().getLoader(tripPackageListLoaderId) == null) {
-            getSupportLoaderManager().initLoader(tripPackageListLoaderId, null, mCallback);
-        } else {
-            getSupportLoaderManager().restartLoader(tripPackageListLoaderId, null, mCallback);
-        }
     }
 
     private void setupRecyclerView() {
@@ -62,31 +74,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mRecyclerView.setAdapter(mTripPackageListAdapter);
     }
 
-    @Override
-    public Loader<List<MainEntity>> onCreateLoader(int id, Bundle args) {
-        Timber.d("onCreateLoader");
-        return new MainEntityListAsyncTaskLoader(this);
-    }
 
-    @Override
-    public void onLoadFinished(Loader<List<MainEntity>> loader, List<MainEntity> data) {
-        Timber.d("onLoadFinished");
-        if (loader instanceof MainEntityListAsyncTaskLoader) {
-            if (data == null) {
-                mTripPackageListAdapter.setItems(null);
-                //TODO add any error managing
-                Timber.w("Nothing returned from Trip Package List API");
+    private void populateRecyclerView(List<MainEntity> data) {
+        if (data == null) {
+            mTripPackageListAdapter.setItems(null);
+            //TODO add any error managing
+            Timber.w("Nothing returned from Trip Package List API");
 
-            }else{
-                mTripPackageListAdapter.setItems(data);
-            }
+        } else {
+            mTripPackageListAdapter.setItems(data);
         }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<List<MainEntity>> loader) {
 
     }
+
 
     @Override
     public void onClick(View view, int position) {
@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Bundle bundle = null;
             bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
                     transitionImageView, transitionImageView.getTransitionName()).toBundle();
-            startActivity(i,bundle);
+            startActivity(i, bundle);
 
-        }else{
+        } else {
             startActivity(i);
         }
     }

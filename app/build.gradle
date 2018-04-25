@@ -72,5 +72,11 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$rootProject.timberExt"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.jakewhartonStuff"
 
+    // architecture components
+
+    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
+    annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
+
+
 
 }
