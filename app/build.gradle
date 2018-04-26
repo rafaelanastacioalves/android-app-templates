@@ -18,7 +18,7 @@ android {
     buildTypes {
 
         buildTypes.each {
-            it.buildConfigField "String", "API_BASE_URL", '"https://private-251c1-rafaelmobicare.apiary-mock.com"'
+            it.buildConfigField "String", "API_BASE_URL", '"http://private-ff953-template25.apiary-mock.com"'
             it.buildConfigField "boolean", "IS_TEST", 'false'
 
         }
