@@ -24,7 +24,6 @@ public class ServiceGenerator {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Retrofit retrofit = builder.client(httpClient
                 .addInterceptor(interceptor)
-                .addInterceptor(appInterceptor)
                 .build()).build();
         return retrofit.create(serviceClass);
     }

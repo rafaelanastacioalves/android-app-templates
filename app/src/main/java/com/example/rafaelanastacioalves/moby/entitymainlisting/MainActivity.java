@@ -2,13 +2,11 @@ package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.lifecycle.ViewModelStoreOwner;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     public void onClick(View view, int position) {
         MainEntity MainEntity = (MainEntity) mTripPackageListAdapter.getItems().get(position);
 
-        AppCompatImageView transitionImageView = view.findViewById(R.id.detail_entity_imageview);
+        AppCompatImageView transitionImageView = view.findViewById(R.id.main_entity_imageview);
         startActivityByVersion(MainEntity, transitionImageView);
 
 

@@ -20,8 +20,8 @@ public class MainEntityViewHolder extends RecyclerView.ViewHolder implements Vie
 
     @BindView(R.id.trip_package_container) View tripPackageContainer;
     private RecyclerViewClickListener aRecyclerViewListener;
-    @BindView(R.id.detail_entity_imageview) ImageView tripPackageImageView;
-    @BindView(R.id.detail_entity_title_textview) TextView tripPackageTitleTextView;
+    @BindView(R.id.main_entity_imageview) ImageView tripPackageImageView;
+    @BindView(R.id.main_entity_title_textview) TextView tripPackageTitleTextView;
 
 
     public MainEntityViewHolder(View itemView, RecyclerViewClickListener clickListener) {

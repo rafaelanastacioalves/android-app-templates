@@ -38,7 +38,7 @@ class LiveDataMainEntityListViewModel extends ViewModel {
             public void onResponse(Call<List<MainEntity>> call, Response<List<MainEntity>> response) {
                 if (response.isSuccessful()) {
                     Timber.i("response Successful");
-                    mMainEntityList.postValue(response.body());
+                    mMainEntityList.setValue(response.body());
                 }
             }
 

@@ -67,10 +67,10 @@ public class MainActivityTest {
                 withId(R.id.trip_package_list)
         ).perform(
                 RecyclerViewActions.scrollToHolder(
-                        withHolderContainingId(R.id.detail_entity_title_textview)
+                        withHolderContainingId(R.id.main_entity_title_textview)
                 )
         );
-        onView(allOf(withId(R.id.detail_entity_title_textview), withText("Disney Premium"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.main_entity_title_textview), withText("Disney Premium"))).check(matches(isDisplayed()));
 
     }
 

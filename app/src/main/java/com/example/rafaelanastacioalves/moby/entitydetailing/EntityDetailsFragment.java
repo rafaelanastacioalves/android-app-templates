@@ -1,6 +1,8 @@
 package com.example.rafaelanastacioalves.moby.entitydetailing;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,12 +29,12 @@ import timber.log.Timber;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EntityDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<EntityDetails>, View.OnClickListener {
+public class EntityDetailsFragment extends Fragment implements View.OnClickListener {
 
-    private static final int PACKAGE_DETAIL_LOADER = 11;
     public static String ARG_PACKAGE_ID;
     private String PACKAGE_ID_LOADER_KEY = "package_id_loader_key";
 
+    private LiveDataEntityDetailsViewModel mLiveDataEntityDetailsViewModel;
 
     @BindView(R.id.detail_entity_detail_name)
     TextView tripPackageDetailValor;
@@ -50,12 +52,26 @@ public class EntityDetailsFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUpLoader();
 
-
+        subscribe();
+        loadData();
     }
 
+    private void loadData() {
+        String mPackageId = getArguments().getString(ARG_PACKAGE_ID);
+        mLiveDataEntityDetailsViewModel.loadData(mPackageId);
+    }
 
+    private void subscribe() {
+        mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this).get(LiveDataEntityDetailsViewModel.class);
+        mLiveDataEntityDetailsViewModel.getEntityDetails().observe(this, new Observer<EntityDetails>() {
+            @Override
+            public void onChanged(@Nullable EntityDetails entityDetails) {
+                setViewsWith(entityDetails);
+            }
+        });
+
+    }
 
 
     @Override
@@ -71,14 +87,7 @@ public class EntityDetailsFragment extends Fragment implements LoaderManager.Loa
         return rootView;
     }
 
-    private void setUpLoader() {
-        String mPackageId = getArguments().getString(ARG_PACKAGE_ID);
 
-        Bundle bundle = new Bundle();
-        bundle.putString(PACKAGE_ID_LOADER_KEY, mPackageId);
-
-        getLoaderManager().initLoader(PACKAGE_DETAIL_LOADER, bundle, this);
-    }
 
     private void setupActionBarWithTitle(String title) {
         AppCompatActivity mActivity = (AppCompatActivity) getActivity();
@@ -87,22 +96,6 @@ public class EntityDetailsFragment extends Fragment implements LoaderManager.Loa
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(title);
 
-
-        }
-    }
-
-
-    @Override
-    public Loader<EntityDetails> onCreateLoader(int id, Bundle args) {
-        Timber.i("EntityDetailActivity - onCreateLoader");
-        String packageId = args.getString(PACKAGE_ID_LOADER_KEY);
-        return new EntityDetailAsyncTaskLoader(getContext(), packageId);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<EntityDetails> loader, EntityDetails data) {
-        if (loader instanceof EntityDetailAsyncTaskLoader) {
-            setViewsWith(data);
 
         }
     }
@@ -129,11 +122,6 @@ public class EntityDetailsFragment extends Fragment implements LoaderManager.Loa
     }
 
 
-    @Override
-    public void onLoaderReset(Loader<EntityDetails> loader) {
-        Timber.i("onLoaderReset");
-
-    }
 
     @Override
     public void onDestroy() {
