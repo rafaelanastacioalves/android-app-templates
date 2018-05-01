@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.compileSdkVersionExt
-    buildToolsVersion rootProject.buildToolsVersionExt
     defaultConfig {
 
         applicationId "com.example.rafaelanastacioalves"
+        buildToolsVersion rootProject.buildToolsVersionExt
         minSdkVersion rootProject.minSdkVersionExt
         targetSdkVersion rootProject.targetSdkVersionExt
         versionCode 11
@@ -74,9 +75,12 @@ dependencies {
 
     // architecture components
 
-    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
+    implementation 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
     annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
-
+}
+repositories {
+    mavenCentral()
 }
