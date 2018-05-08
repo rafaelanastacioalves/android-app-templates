@@ -9,14 +9,13 @@ import com.example.rafaelanastacioalves.moby.R;
 import com.example.rafaelanastacioalves.moby.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener;
 
-import java.util.ArrayList;
-import java.util.List;
+import kotlin.collections.ArrayList
 
-public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder> {
-    private RecyclerViewClickListener recyclerViewClickListener;
-    private List<MainEntity> items = new ArrayList<>();
+class MainEntityAdapter : RecyclerView.Adapter<MainEntityViewHolder>() {
+    private var recyclerViewClickListener: RecyclerViewClickListener? = null
+    private var items = ArrayList<MainEntity>()
 
-    private Context mContext;
+    private var mContext: Context? = null
 
     public MainEntityAdapter(Context context) {
         mContext = context;
@@ -38,8 +37,8 @@ public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder
 
     }
 
-    @Override
-    public MainEntityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+    override public MainEntityViewHolder : onCreateViewHolder(parent: ViewGroup, viewType: int  {
         return new MainEntityViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.detail_entity_viewholder, parent, false), recyclerViewClickListener);
     }
