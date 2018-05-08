@@ -68,19 +68,19 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
 
     private fun populateRecyclerView(data: List<MainEntity>?) {
         if (data == null) {
-            mTripPackageListAdapter!!.items = null
+            mTripPackageListAdapter!!.setItems(null)
             //TODO add any error managing
             Timber.w("Nothing returned from Trip Package List API")
 
         } else {
-            mTripPackageListAdapter!!.items = data
+            mTripPackageListAdapter!!.setItems(data)
         }
 
     }
 
 
     override fun onClick(view: View, position: Int) {
-        val MainEntity = mTripPackageListAdapter!!.items[position] as MainEntity
+        val MainEntity = mTripPackageListAdapter!!.getItems()!!.get(position)
 
         val transitionImageView = view.findViewById<View>(R.id.main_entity_imageview)
         startActivityByVersion(MainEntity, transitionImageView as AppCompatImageView)
