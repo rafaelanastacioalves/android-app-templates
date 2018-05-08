@@ -11,50 +11,42 @@ import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 
 import kotlin.collections.ArrayList
 
-class MainEntityAdapter : RecyclerView.Adapter<MainEntityViewHolder>() {
+class MainEntityAdapter(context: Context) : RecyclerView.Adapter<MainEntityViewHolder>() {
     private var recyclerViewClickListener: RecyclerViewClickListener? = null
-    private var items = ArrayList<MainEntity>()
+    private var items: List<MainEntity>? = null
 
-    private var mContext: Context? = null
+    private val mContext: Context = context
 
-    public MainEntityAdapter(Context context) {
-        mContext = context;
-    }
-
-
-    public void setRecyclerViewClickListener(RecyclerViewClickListener aRVC) {
+    fun setRecyclerViewClickListener(aRVC: RecyclerViewClickListener ) {
         this.recyclerViewClickListener = aRVC;
     }
 
-    public List<MainEntity> getItems() {
+    fun getItems(): List<MainEntity>? {
         return this.items;
     }
 
-    public void setItems(List<MainEntity> items) {
-        this.items = items;
+    fun setItems(items: List<MainEntity>?) {
+        this.items = items as ArrayList<MainEntity>;
         notifyDataSetChanged();
-
-
     }
 
 
-    override public MainEntityViewHolder : onCreateViewHolder(parent: ViewGroup, viewType: int  {
-        return new MainEntityViewHolder(LayoutInflater.from(parent.getContext())
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainEntityViewHolder  {
+        return MainEntityViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.detail_entity_viewholder, parent, false), recyclerViewClickListener);
     }
 
 
 
-    @Override
-    public void onBindViewHolder(MainEntityViewHolder holder, int position) {
-        MainEntity aRepoW = getItems().get(position);
-        ((MainEntityViewHolder) holder).bind(aRepoW, mContext);
+    override fun onBindViewHolder(holder: MainEntityViewHolder,position: Int ) {
+        val aRepoW = getItems()?.get(position);
+        holder.bind(aRepoW, mContext);
     }
 
-    @Override
-    public int getItemCount() {
+
+    override fun getItemCount(): Int {
         if (getItems() != null){
-            return getItems().size();
+            return getItems()!!.size;
         }else{
             return 0;
         }
