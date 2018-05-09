@@ -39,7 +39,7 @@ class MainEntityAdapter(context: Context) : RecyclerView.Adapter<MainEntityViewH
 
 
     override fun onBindViewHolder(holder: MainEntityViewHolder,position: Int ) {
-        val aRepoW = getItems()?.get(position);
+        val aRepoW = getItems()?.get(position) as MainEntity;
         holder.bind(aRepoW, mContext);
     }
 
