@@ -12,7 +12,7 @@ import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 import kotlin.collections.ArrayList
 
 class MainEntityAdapter(context: Context) : RecyclerView.Adapter<MainEntityViewHolder>() {
-    private var recyclerViewClickListener: RecyclerViewClickListener? = null
+    lateinit private var recyclerViewClickListener: RecyclerViewClickListener
     private var items: List<MainEntity>? = null
 
     private val mContext: Context = context

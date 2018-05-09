@@ -26,8 +26,10 @@ class MainEntityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), 
     lateinit var tripPackageTitleTextView: TextView;
 
     constructor(itemView: View , clickListener: RecyclerViewClickListener) : this(itemView) {
-        ButterKnife.bind(this, itemView)
         this.aRecyclerViewListener = clickListener
+    }
+    init {
+        ButterKnife.bind(this, itemView)
         tripPackageContainer.setOnClickListener(this)
     }
 

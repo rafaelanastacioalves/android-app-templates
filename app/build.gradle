@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion rootProject.compileSdkVersionExt
@@ -71,7 +73,7 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.jakewhartonStuff"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoExt"
     implementation "com.jakewharton.timber:timber:$rootProject.timberExt"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.jakewhartonStuff"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.jakewhartonStuff"
 
     // architecture components
 
