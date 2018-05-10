@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
 
     private fun startActivityByVersion(mainEntity: MainEntity, transitionImageView: AppCompatImageView) {
         val i = Intent(this, EntityDetailActivity::class.java)
-        i.putExtra(EntityDetailsFragment.ARG_PACKAGE_ID, mainEntity.id)
+        i.putExtra(EntityDetailsFragment.ARG_PACKAGE_ID, mainEntity.getId())
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             var bundle: Bundle? = null

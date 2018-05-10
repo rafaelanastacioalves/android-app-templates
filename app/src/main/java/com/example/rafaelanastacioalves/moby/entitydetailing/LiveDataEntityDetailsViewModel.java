@@ -30,7 +30,7 @@ class LiveDataEntityDetailsViewModel extends ViewModel {
         }
 
 
-        APIClient APIClient = ServiceGenerator.createService(APIClient.class);
+        APIClient APIClient = ServiceGenerator.INSTANCE.createService(APIClient.class);
         if (tripPackageId == null) {
             Timber.w("loadInBackground - not supposed to have null variable here");
             return;

@@ -1,8 +1,9 @@
-package com.example.rafaelanastacioalves.moby.listeners;
+package com.example.rafaelanastacioalves.moby.listeners
 
 
-import android.view.View;
-public interface RecyclerViewClickListener {
+import android.view.View
+
+interface RecyclerViewClickListener {
 
     /**
      * Callback method to be invoked when a item in a
@@ -11,5 +12,5 @@ public interface RecyclerViewClickListener {
      * @param view     The view within the RecyclerView.Adapter
      * @param position The position of the view in the adapter
      */
-    public void onClick(View view, int position);
+    fun onClick(view: View, position: Int)
 }

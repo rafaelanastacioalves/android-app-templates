@@ -33,7 +33,7 @@ class MainEntityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), 
         tripPackageContainer.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         aRecyclerViewListener.onClick(v, getAdapterPosition());
     }
 
