@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
     private var mTripPackageListAdapter: MainEntityAdapter? = null
     private val tripPackageListLoaderId = 10
     private var mRecyclerView: RecyclerView? = null
-    private var mLiveDataMainEntityListViewModel: LiveDataMainEntityListViewModel? = null
+    lateinit private var mLiveDataMainEntityListViewModel: LiveDataMainEntityListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +37,12 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
     }
 
     private fun loadData() {
-        mLiveDataMainEntityListViewModel!!.loadData()
+        mLiveDataMainEntityListViewModel.loadData()
     }
 
     private fun subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel::class.java!!)
-        mLiveDataMainEntityListViewModel!!.mainEntityList.observe(this, Observer { mainEntities ->
+        mLiveDataMainEntityListViewModel.mainEntityList.observe(this, Observer { mainEntities ->
             Timber.d("On Changed")
             populateRecyclerView(mainEntities)
         })

@@ -14,7 +14,7 @@ import timber.log.Timber;
 
 class LiveDataMainEntityListViewModel : ViewModel() {
 
-    var mainEntityList: MutableLiveData<List<MainEntity>> = MutableLiveData()
+    val mainEntityList = MutableLiveData<List<MainEntity>>()
 
 
     fun loadData() {
