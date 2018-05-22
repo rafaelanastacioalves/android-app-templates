@@ -25,7 +25,7 @@ allprojects {
 
 ext {
     compileSdkVersionExt = 26
-    buildToolsVersionExt = "26.0.2"
+    buildToolsVersionExt = "27.0.3"
     minSdkVersionExt = 15
     targetSdkVersionExt = 26
     crashlytics = "2.7.1@aar"
@@ -43,6 +43,9 @@ ext {
     mockWebServerExt = "3.8.0"
     testRunnerExt = "1.0.1"
     archLifecycleVersion = "1.1.1"
+    rxAndroidVersion = "2.0.1"
+    rxJavaVersion = "2.x.x"
+    retrofitRxJavaAdapterExt = "1.0.0"
 
 
 }

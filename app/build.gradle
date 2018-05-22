@@ -36,6 +36,10 @@ android {
 
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -60,6 +64,7 @@ dependencies {
     //retrofit + gson
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitExt"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitExt"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.retrofitRxJavaAdapterExt"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3Ext"
 
     implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibrariesExt"
@@ -74,9 +79,12 @@ dependencies {
 
     // architecture components
 
-    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
+    implementation 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
     annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
 
+    // rx android
 
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
 
 }
