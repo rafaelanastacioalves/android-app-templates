@@ -1,5 +1,6 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
@@ -10,6 +11,9 @@ import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,23 +34,14 @@ class LiveDataMainEntityListViewModel extends ViewModel {
         if(mMainEntityList.getValue() != null){
             return;
         }
+        
 
         APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        Call<List<MainEntity>> call = APIClient.getTripPackageList();
-        call.enqueue(new Callback<List<MainEntity>>() {
-            @Override
-            public void onResponse(Call<List<MainEntity>> call, Response<List<MainEntity>> response) {
-                if (response.isSuccessful()) {
-                    Timber.i("response Successful");
-                    mMainEntityList.setValue(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<MainEntity>> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
+        Observable<List<MainEntity>> callObservable = APIClient.getTripPackageList();
+        callObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> mMainEntityList.setValue(response),
+                        throwable -> throwable.printStackTrace());
     }
 }

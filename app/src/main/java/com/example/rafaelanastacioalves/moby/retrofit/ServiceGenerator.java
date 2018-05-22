@@ -1,7 +1,9 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
 import com.example.rafaelanastacioalves.moby.BuildConfig;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import io.reactivex.plugins.RxJavaPlugins;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -17,7 +19,8 @@ public class ServiceGenerator {
         Retrofit.Builder builder =
                 new Retrofit.Builder()
                         .baseUrl(BuildConfig.API_BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create());
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
