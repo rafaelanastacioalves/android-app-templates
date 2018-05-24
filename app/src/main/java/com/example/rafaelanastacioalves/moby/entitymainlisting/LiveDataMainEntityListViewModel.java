@@ -33,9 +33,11 @@ class LiveDataMainEntityListViewModel extends ViewModel {
         
 
         APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        Observable<List<MainEntity>> finalResult = Observable.merge(
+        Observable<List<MainEntity>> finalResult = Observable.zip(
                 APIClient.getTripPackageList().subscribeOn(Schedulers.io()),
-                APIClient.getTripPackageListAdditional().subscribeOn(Schedulers.io())
+                APIClient.getTripPackageListAdditional().subscribeOn(Schedulers.io()),
+                (list1, list2) -> list1.addAll(list2)
+
         );
 
         finalResult.observeOn(AndroidSchedulers.mainThread())
