@@ -8,15 +8,11 @@ import com.example.rafaelanastacioalves.moby.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
 import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
 
-import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
 class LiveDataMainEntityListViewModel extends ViewModel {
@@ -37,10 +33,12 @@ class LiveDataMainEntityListViewModel extends ViewModel {
         
 
         APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        Observable<List<MainEntity>> callObservable = APIClient.getTripPackageList();
-        callObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        Observable<List<MainEntity>> finalResult = Observable.merge(
+                APIClient.getTripPackageList().subscribeOn(Schedulers.io()),
+                APIClient.getTripPackageListAdditional().subscribeOn(Schedulers.io())
+        );
+
+        finalResult.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> mMainEntityList.setValue(response),
                         throwable -> throwable.printStackTrace());
     }
