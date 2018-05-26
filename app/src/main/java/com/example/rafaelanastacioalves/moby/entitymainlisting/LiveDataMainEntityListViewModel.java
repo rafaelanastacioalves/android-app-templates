@@ -8,6 +8,7 @@ import com.example.rafaelanastacioalves.moby.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
 import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -27,21 +28,25 @@ class LiveDataMainEntityListViewModel extends ViewModel {
     public void loadData() {
         Timber.i("LiveDataMainEntityListViewModel loadData");
 
-        if(mMainEntityList.getValue() != null){
+        if (mMainEntityList.getValue() != null) {
             return;
         }
-        
+
 
         APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        Observable<List<MainEntity>> finalResult = Observable.zip(
+        Observable<List<MainEntity>> finalResult = Observable.combineLatest(
                 APIClient.getTripPackageList().subscribeOn(Schedulers.io()),
                 APIClient.getTripPackageListAdditional().subscribeOn(Schedulers.io()),
-                (list1, list2) -> list1.addAll(list2)
-
-        );
+                (l1, l2) -> {
+                    List<MainEntity> finalList = new ArrayList<>();
+                    finalList.addAll(l1);
+                    finalList.addAll(l2);
+                    return finalList;
+                });
 
         finalResult.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> mMainEntityList.setValue(response),
                         throwable -> throwable.printStackTrace());
     }
+    8
 }
