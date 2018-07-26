@@ -43,6 +43,7 @@ ext {
     mockWebServerExt = "3.8.0"
     testRunnerExt = "1.0.1"
     archLifecycleVersion = "1.1.1"
+    daggerVersion = "2.+"
 
 
 }

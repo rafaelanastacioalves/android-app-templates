@@ -74,8 +74,14 @@ dependencies {
 
     // architecture components
 
-    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
+    implementation 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
     annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
+
+
+    // dagger
+
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
 
 
 
