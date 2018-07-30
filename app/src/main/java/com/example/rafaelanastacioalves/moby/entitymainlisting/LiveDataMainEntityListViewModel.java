@@ -48,5 +48,5 @@ class LiveDataMainEntityListViewModel extends ViewModel {
                 .subscribe(response -> mMainEntityList.setValue(response),
                         throwable -> throwable.printStackTrace());
     }
-    8
+
 }

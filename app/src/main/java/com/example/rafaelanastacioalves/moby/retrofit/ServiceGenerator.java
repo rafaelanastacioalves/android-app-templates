@@ -1,13 +1,13 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
 import com.example.rafaelanastacioalves.moby.BuildConfig;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import io.reactivex.plugins.RxJavaPlugins;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 
 public class ServiceGenerator {
 

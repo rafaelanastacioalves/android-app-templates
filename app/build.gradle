@@ -64,7 +64,7 @@ dependencies {
     //retrofit + gson
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitExt"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitExt"
-    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.retrofitRxJavaAdapterExt"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitExt"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3Ext"
 
     implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibrariesExt"
