@@ -19,6 +19,6 @@ public interface APIClient {
     Observable<List<MainEntity>> getTripPackageListAdditional();
 
     @POST("/trip-packages/{tripPackageID}")
-    Call<EntityDetails> getTripPackageDetails(@Path("tripPackageID") String id);
+    Observable<EntityDetails> getTripPackageDetails(@Path("tripPackageID") String id);
 
 }

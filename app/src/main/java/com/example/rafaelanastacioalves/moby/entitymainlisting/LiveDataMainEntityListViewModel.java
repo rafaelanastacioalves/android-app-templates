@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.example.rafaelanastacioalves.moby.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
+import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
 
 import java.util.ArrayList;
@@ -33,16 +34,7 @@ public class LiveDataMainEntityListViewModel extends ViewModel {
         }
 
 
-        APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        Observable<List<MainEntity>> finalResult = Observable.combineLatest(
-                APIClient.getTripPackageList().subscribeOn(Schedulers.io()),
-                APIClient.getTripPackageListAdditional().subscribeOn(Schedulers.io()),
-                (l1, l2) -> {
-                    List<MainEntity> finalList = new ArrayList<>();
-                    finalList.addAll(l1);
-                    finalList.addAll(l2);
-                    return finalList;
-                });
+        Observable<List<MainEntity>> finalResult = AppRepository.getMainEntityList();
 
         finalResult.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> mMainEntityList.setValue(response),
