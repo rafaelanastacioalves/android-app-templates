@@ -1,21 +1,35 @@
 package com.example.rafaelanastacioalves.moby.application;
 
+import android.app.Activity;
 import android.app.Application;
+import android.arch.lifecycle.ViewModel;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
 import com.example.rafaelanastacioalves.moby.BuildConfig;
+import com.example.rafaelanastacioalves.moby.Dagger.DaggerMyApplicationComponent;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import timber.log.Timber;
 
 
-public class MainApplication extends Application {
+public class MainApplication extends Application implements HasActivityInjector {
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+
     @Override
     public void onCreate() {
-        setupLog();
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         super.onCreate();
+        setupLog();
+        DaggerMyApplicationComponent.create().inject(this);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+
     }
 
     private void setupLog() {
@@ -28,6 +42,11 @@ public class MainApplication extends Application {
         } else {
             Timber.plant(new CrashReportingTree());
         }
+    }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 
     /**

@@ -18,7 +18,7 @@ public class AppRepository {
 
     public MutableLiveData<List<MainEntity>> getMainEntityList() {
         Timber.i("LiveDataMainEntityListViewModel loadData");
-        MutableLiveData<List<MainEntity>> mainEntityList = new MutableLiveData<>();
+        final MutableLiveData<List<MainEntity>> mainEntityList = new MutableLiveData<>();
 
         APIClient APIClient = ServiceGenerator.createService(APIClient.class);
         Call<List<MainEntity>> call = APIClient.getTripPackageList();
