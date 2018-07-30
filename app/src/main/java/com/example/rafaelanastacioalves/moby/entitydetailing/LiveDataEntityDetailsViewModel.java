@@ -14,7 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-class LiveDataEntityDetailsViewModel extends ViewModel {
+public class LiveDataEntityDetailsViewModel extends ViewModel {
 
     private MutableLiveData<EntityDetails> mEntityDetails = new MutableLiveData<>();
 

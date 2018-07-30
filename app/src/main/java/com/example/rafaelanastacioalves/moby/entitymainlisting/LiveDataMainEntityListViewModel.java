@@ -16,7 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-class LiveDataMainEntityListViewModel extends ViewModel {
+public class LiveDataMainEntityListViewModel extends ViewModel {
 
     private MutableLiveData<List<MainEntity>> mMainEntityList = new MutableLiveData<>();
 

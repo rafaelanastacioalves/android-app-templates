@@ -37,6 +37,7 @@ public class MainActivityTest {
     @Rule
     public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class, true, false);
     private String fileNameTripPackagesOKResponse = "trip_packages_ok_response.json";
+    private String fileNameTripPackagesAditionalOKResponse = "trip_packages_aditional_ok_response.json";
     private MockWebServer server;
 
     @Before
@@ -59,17 +60,18 @@ public class MainActivityTest {
                 )
         );
 
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(RestServiceTestHelper.getStringFromFile(
+                        InstrumentationRegistry.getInstrumentation().getContext()
+                        , fileNameTripPackagesAditionalOKResponse)
+                )
+        );
+
         Intent intent = new Intent();
 
         mainActivityActivityTestRule.launchActivity(intent);
 
-        onView(
-                withId(R.id.trip_package_list)
-        ).perform(
-                RecyclerViewActions.scrollToHolder(
-                        withHolderContainingId(R.id.main_entity_title_textview)
-                )
-        );
         onView(allOf(withId(R.id.main_entity_title_textview), withText("Disney Premium"))).check(matches(isDisplayed()));
 
     }

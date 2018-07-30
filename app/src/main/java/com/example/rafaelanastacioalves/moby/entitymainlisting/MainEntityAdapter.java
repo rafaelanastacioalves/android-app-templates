@@ -41,7 +41,7 @@ public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder
     @Override
     public MainEntityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MainEntityViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.detail_entity_viewholder, parent, false), recyclerViewClickListener);
+                .inflate(R.layout.main_entity_viewholder, parent, false), recyclerViewClickListener);
     }
 
 
