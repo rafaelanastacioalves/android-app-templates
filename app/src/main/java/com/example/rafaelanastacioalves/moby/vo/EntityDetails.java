@@ -1,4 +1,4 @@
-package com.example.rafaelanastacioalves.moby.entities;
+package com.example.rafaelanastacioalves.moby.vo;
 
 
 public class EntityDetails {

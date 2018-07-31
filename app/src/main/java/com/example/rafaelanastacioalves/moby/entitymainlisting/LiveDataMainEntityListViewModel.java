@@ -1,20 +1,15 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.rafaelanastacioalves.moby.entities.MainEntity;
-import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
-import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
-import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
+import com.example.rafaelanastacioalves.moby.vo.MainEntity;
+import com.example.rafaelanastacioalves.moby.repository.AppRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class LiveDataMainEntityListViewModel extends ViewModel {

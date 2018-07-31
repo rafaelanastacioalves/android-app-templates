@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rafaelanastacioalves.moby.R;
-import com.example.rafaelanastacioalves.moby.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.vo.MainEntity;
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener;
 import com.squareup.picasso.Picasso;
 

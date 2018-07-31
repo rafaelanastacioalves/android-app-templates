@@ -3,18 +3,11 @@ package com.example.rafaelanastacioalves.moby.entitydetailing;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.rafaelanastacioalves.moby.entities.EntityDetails;
-import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
-import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
-import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
-
-import java.io.IOException;
+import com.example.rafaelanastacioalves.moby.vo.EntityDetails;
+import com.example.rafaelanastacioalves.moby.repository.AppRepository;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
 public class LiveDataEntityDetailsViewModel extends ViewModel {
