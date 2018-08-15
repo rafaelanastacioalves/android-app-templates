@@ -2,31 +2,28 @@ package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
 
-import java.util.concurrent.Callable;
-
-import javax.inject.Inject;
+import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 
 
-public class ProjectViewModelFactory implements ViewModelProvider.Factory {
-    private final ArrayMap<Class, Callable<? extends ViewModel>> creators;
+class ProjectViewModelFactory implements ViewModelProvider.Factory {
 
-    @Inject
-    public ProjectViewModelFactory(ViewModelSubComponent viewModelSubComponent) {
-        creators = new ArrayMap<>();
+    private final AppRepository appRepository;
 
-        // View models cannot be injected directly because they won't be bound to the owner's
-        // view model scope.
-        creators.put(LiveDataMainEntityListViewModel.class, () -> viewModelSubComponent.projectViewModel());
+    ProjectViewModelFactory(AppRepository appRepository){
+        this.appRepository = appRepository;
     }
-
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return null;
+
+        if (modelClass.isAssignableFrom(LiveDataMainEntityListViewModel.class)){
+            return (T) new LiveDataMainEntityListViewModel(appRepository)
+        }
+        throw new IllegalArgumentException("Unknown ViewModel class");
     }
+
+
 }

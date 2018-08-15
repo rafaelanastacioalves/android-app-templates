@@ -21,6 +21,8 @@ import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     private int tripPackageListLoaderId = 10;
     private RecyclerView mRecyclerView;
     private LiveDataMainEntityListViewModel mLiveDataMainEntityListViewModel;
+
+    @Inject
+    ProjectViewModelFactory projectViewModelFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -22,7 +22,7 @@ public class LiveDataMainEntityListViewModel extends ViewModel {
     private AppRepository githubRepository;
     private MutableLiveData<List<MainEntity>> mMainEntityList;
 
-    @Inject
+
     public LiveDataMainEntityListViewModel(AppRepository appRepository){
         this.githubRepository = appRepository;
     }
