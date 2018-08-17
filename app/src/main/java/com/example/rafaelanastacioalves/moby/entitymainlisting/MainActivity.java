@@ -1,5 +1,6 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,9 +25,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
+public class MainActivity extends FragmentActivity implements RecyclerViewClickListener {
     private final RecyclerViewClickListener mClickListener = this;
     private MainEntityAdapter mTripPackageListAdapter;
     private int tripPackageListLoaderId = 10;
@@ -37,12 +40,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupDagger();
         super.onCreate(savedInstanceState);
         setupViews();
         setupRecyclerView();
         subscribe();
         loadData();
 
+    }
+
+    private void setupDagger() {
+        AndroidInjection.inject(this);
     }
 
     private void loadData() {

@@ -19,9 +19,8 @@ public class ApplicationModule {
     }
 
     @Provides
-    ProjectViewModelFactory projectViewModelFactory(AppRepository appRepository){
-        return new ProjectViewModelFactory(appRepository);
+    AppRepository provideAppRepository(){
+        return new AppRepository();
     }
-
 
 }

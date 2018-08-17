@@ -8,10 +8,11 @@ import dagger.Provides;
 @Module
 public class EntityMainModule {
 
-    @Provides
-    AppRepository provideAppRepository(){
-        return new AppRepository();
-    }
 
+
+    @Provides
+    ProjectViewModelFactory projectViewModelFactory(AppRepository appRepository){
+        return new ProjectViewModelFactory(appRepository);
+    }
 
 }
