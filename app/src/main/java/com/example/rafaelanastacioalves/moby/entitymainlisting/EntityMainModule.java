@@ -1,18 +1,17 @@
-package com.example.rafaelanastacioalves.moby.Dagger;
+package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class RepositoryModule {
+public class EntityMainModule {
 
     @Provides
-    @Singleton
     AppRepository provideAppRepository(){
         return new AppRepository();
     }
+
+
 }

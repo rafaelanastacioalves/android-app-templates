@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     private void subscribe() {
-        mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel.class);
+        mLiveDataMainEntityListViewModel = ViewModelProviders.of(this, projectViewModelFactory).get(LiveDataMainEntityListViewModel.class);
         mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<List<MainEntity>>() {
             @Override
             public void onChanged(@Nullable List<MainEntity> mainEntities) {

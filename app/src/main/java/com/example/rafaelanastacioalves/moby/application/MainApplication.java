@@ -2,12 +2,11 @@ package com.example.rafaelanastacioalves.moby.application;
 
 import android.app.Activity;
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
 import com.example.rafaelanastacioalves.moby.BuildConfig;
-import com.example.rafaelanastacioalves.moby.Dagger.DaggerMyApplicationComponent;
+import com.example.rafaelanastacioalves.moby.di.DaggerMyApplicationComponent;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -26,7 +25,12 @@ public class MainApplication extends Application implements HasActivityInjector 
     public void onCreate() {
         super.onCreate();
         setupLog();
-        DaggerMyApplicationComponent.create().inject(this);
+
+        DaggerMyApplicationComponent
+                .builder()
+                .application(this)
+                .build()
+                .inject(this);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
 
