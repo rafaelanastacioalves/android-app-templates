@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 
 
-public class ProjectViewModelFactory implements ViewModelProvider.Factory {
+ class ProjectViewModelFactory implements ViewModelProvider.Factory {
 
     private final AppRepository appRepository;
 

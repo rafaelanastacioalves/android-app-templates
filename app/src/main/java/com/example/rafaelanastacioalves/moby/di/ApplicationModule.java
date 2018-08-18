@@ -4,8 +4,9 @@ import android.content.Context;
 
 import com.example.rafaelanastacioalves.moby.application.MainApplication;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.MainActivity;
-import com.example.rafaelanastacioalves.moby.entitymainlisting.ProjectViewModelFactory;
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,6 +19,7 @@ public class ApplicationModule {
         return application.getApplicationContext();
     }
 
+    @Singleton
     @Provides
     AppRepository provideAppRepository(){
         return new AppRepository();

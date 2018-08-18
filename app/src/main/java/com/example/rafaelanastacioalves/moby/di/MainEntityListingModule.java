@@ -3,7 +3,6 @@ package com.example.rafaelanastacioalves.moby.di;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.EntityMainModule;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.LiveDataMainEntityListViewModel;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.MainActivity;
-import com.example.rafaelanastacioalves.moby.entitymainlisting.ProjectViewModelFactory;
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 
 import dagger.Module;

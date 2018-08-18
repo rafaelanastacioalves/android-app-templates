@@ -4,12 +4,16 @@ import android.app.Application;
 
 import com.example.rafaelanastacioalves.moby.application.MainApplication;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
 
-@Component(modules = {AndroidInjectionModule.class, MainEntityListingModule.class, ApplicationModule.class})
+@Singleton
+@Component(modules = {AndroidSupportInjectionModule.class, MainEntityListingModule.class, ApplicationModule.class})
 public interface MyApplicationComponent {
 
     @Component.Builder
@@ -19,5 +23,5 @@ public interface MyApplicationComponent {
         MyApplicationComponent build();
     }
 
-    void inject(Application application);
+    void inject(MainApplication application);
 }

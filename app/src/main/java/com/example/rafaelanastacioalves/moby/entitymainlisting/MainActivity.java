@@ -28,7 +28,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
-public class MainActivity extends FragmentActivity implements RecyclerViewClickListener {
+public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
     private final RecyclerViewClickListener mClickListener = this;
     private MainEntityAdapter mTripPackageListAdapter;
     private int tripPackageListLoaderId = 10;
