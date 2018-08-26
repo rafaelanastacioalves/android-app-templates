@@ -1,17 +1,19 @@
-package com.example.rafaelanastacioalves.moby.entitymainlisting;
+package com.example.rafaelanastacioalves.moby.entitydetailing;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.rafaelanastacioalves.moby.domain.interactors.EntityDetailaingInteractor;
 import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor;
+import com.example.rafaelanastacioalves.moby.entitymainlisting.LiveDataMainEntityListViewModel;
 
 
-class ProjectViewModelFactory implements ViewModelProvider.Factory {
+class EntityDetailViewModelFactory implements ViewModelProvider.Factory {
 
-    private final MainEntityListInteractor mInteractor;
+    private final EntityDetailaingInteractor mInteractor;
 
-    public ProjectViewModelFactory(MainEntityListInteractor interactor){
+    public EntityDetailViewModelFactory(EntityDetailaingInteractor interactor){
         this.mInteractor = interactor;
     }
 
@@ -20,7 +22,7 @@ class ProjectViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 
         if (modelClass.isAssignableFrom(LiveDataMainEntityListViewModel.class)){
-            return (T) new LiveDataMainEntityListViewModel(mInteractor);
+            return (T) new LiveDataEntityDetailsViewModel(mInteractor);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

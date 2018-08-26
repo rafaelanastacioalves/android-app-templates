@@ -20,6 +20,8 @@ import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,6 +34,9 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
     private String PACKAGE_ID_LOADER_KEY = "package_id_loader_key";
 
     private LiveDataEntityDetailsViewModel mLiveDataEntityDetailsViewModel;
+
+    @Inject
+
 
     @BindView(R.id.detail_entity_detail_name)
     TextView tripPackageDetailValor;

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     private LiveDataMainEntityListViewModel mLiveDataMainEntityListViewModel;
 
     @Inject
-    ProjectViewModelFactory projectViewModelFactory;
+    MainEntityListingViewModelFactory projectViewModelFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

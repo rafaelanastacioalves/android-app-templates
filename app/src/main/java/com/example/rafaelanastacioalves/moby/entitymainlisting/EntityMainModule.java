@@ -10,8 +10,8 @@ public class EntityMainModule {
 
 
     @Provides
-    ProjectViewModelFactory projectViewModelFactory(MainEntityListInteractor mainEntityListinInteractor){
-        return new ProjectViewModelFactory(mainEntityListinInteractor);
+    MainEntityListingViewModelFactory projectViewModelFactory(MainEntityListInteractor mainEntityListinInteractor){
+        return new MainEntityListingViewModelFactory(mainEntityListinInteractor);
     }
 
 }

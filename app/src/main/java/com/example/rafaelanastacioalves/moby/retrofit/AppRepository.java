@@ -1,5 +1,6 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
+import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class AppRepository {
 
     public Single<List<MainEntity>> getMainEntityList() {
         return Single.create(emitter -> {
-            APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-            Call<List<MainEntity>> call = APIClient.getTripPackageList();
+            APIClient apiClient = ServiceGenerator.createService(APIClient.class);
+            Call<List<MainEntity>> call = apiClient.getTripPackageList();
             call.enqueue(new Callback<List<MainEntity>>() {
                 @Override
                 public void onResponse(Call<List<MainEntity>> call, Response<List<MainEntity>> response) {
@@ -30,6 +31,29 @@ public class AppRepository {
 
                 @Override
                 public void onFailure(Call<List<MainEntity>> call, Throwable t) {
+                    emitter.onError(t);
+                }
+            });
+
+        });
+
+    }
+
+    public Single<EntityDetails> getEntityDetails(String id){
+        return Single.create(emitter -> {
+            APIClient apiClient = ServiceGenerator.createService(APIClient.class);
+            Call<EntityDetails> call = apiClient.getTripPackageDetails(id);
+            call.enqueue(new Callback<EntityDetails>() {
+                @Override
+                public void onResponse(Call<EntityDetails> call, Response<EntityDetails> response) {
+                    if (response.isSuccessful()) {
+                        Timber.i("response Successful");
+                        emitter.onSuccess(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<EntityDetails> call, Throwable t) {
                     emitter.onError(t);
                 }
             });
