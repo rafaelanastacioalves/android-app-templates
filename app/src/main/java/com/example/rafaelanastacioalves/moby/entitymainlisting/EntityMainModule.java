@@ -1,6 +1,6 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
+import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor;
 
 import dagger.Module;
 import dagger.Provides;
@@ -9,10 +9,9 @@ import dagger.Provides;
 public class EntityMainModule {
 
 
-
     @Provides
-    ProjectViewModelFactory projectViewModelFactory(AppRepository appRepository){
-        return new ProjectViewModelFactory(appRepository);
+    ProjectViewModelFactory projectViewModelFactory(MainEntityListInteractor mainEntityListinInteractor){
+        return new ProjectViewModelFactory(mainEntityListinInteractor);
     }
 
 }

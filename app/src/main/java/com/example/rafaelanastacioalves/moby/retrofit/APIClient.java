@@ -1,7 +1,7 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
-import com.example.rafaelanastacioalves.moby.entities.MainEntity;
-import com.example.rafaelanastacioalves.moby.entities.EntityDetails;
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 
 import java.util.List;
 

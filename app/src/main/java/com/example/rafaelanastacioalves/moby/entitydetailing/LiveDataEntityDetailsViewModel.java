@@ -3,11 +3,9 @@ package com.example.rafaelanastacioalves.moby.entitydetailing;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.rafaelanastacioalves.moby.entities.EntityDetails;
+import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
 import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
-
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;

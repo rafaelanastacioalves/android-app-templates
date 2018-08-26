@@ -4,15 +4,15 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
+import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor;
 
 
- class ProjectViewModelFactory implements ViewModelProvider.Factory {
+class ProjectViewModelFactory implements ViewModelProvider.Factory {
 
-    private final AppRepository appRepository;
+    private final MainEntityListInteractor mInteractor;
 
-    public ProjectViewModelFactory(AppRepository appRepository){
-        this.appRepository = appRepository;
+    public ProjectViewModelFactory(MainEntityListInteractor interactor){
+        this.mInteractor = interactor;
     }
 
     @NonNull
@@ -20,7 +20,7 @@ import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 
         if (modelClass.isAssignableFrom(LiveDataMainEntityListViewModel.class)){
-            return (T) new LiveDataMainEntityListViewModel(appRepository);
+            return (T) new LiveDataMainEntityListViewModel(mInteractor);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

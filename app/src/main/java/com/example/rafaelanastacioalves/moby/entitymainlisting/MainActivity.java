@@ -1,6 +1,5 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +16,7 @@ import android.view.View;
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment;
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity;
 import com.example.rafaelanastacioalves.moby.R;
-import com.example.rafaelanastacioalves.moby.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener;
 
 import java.util.List;

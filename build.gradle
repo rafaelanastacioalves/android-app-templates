@@ -44,6 +44,9 @@ ext {
     testRunnerExt = "1.0.1"
     archLifecycleVersion = "1.1.1"
     daggerVersion = "2.+"
+    rxAndroidVersion = "2.0.+"
+    rxJavaVersion = "2.x.x"
+
 
 
 }
