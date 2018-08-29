@@ -35,7 +35,6 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
 
     private LiveDataEntityDetailsViewModel mLiveDataEntityDetailsViewModel;
 
-    @Inject
 
 
     @BindView(R.id.detail_entity_detail_name)
@@ -54,19 +53,15 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         subscribe();
-        loadData();
     }
 
-    private void loadData() {
-        String mPackageId = getArguments().getString(ARG_PACKAGE_ID);
-        mLiveDataEntityDetailsViewModel.loadData(mPackageId);
-    }
+
 
     private void subscribe() {
+        String mPackageId = getArguments().getString(ARG_PACKAGE_ID);
         mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this).get(LiveDataEntityDetailsViewModel.class);
-        mLiveDataEntityDetailsViewModel.getEntityDetails().observe(this, new Observer<EntityDetails>() {
+        mLiveDataEntityDetailsViewModel.getEntityDetails(mPackageId).observe(this, new Observer<EntityDetails>() {
             @Override
             public void onChanged(@Nullable EntityDetails entityDetails) {
                 setViewsWith(entityDetails);

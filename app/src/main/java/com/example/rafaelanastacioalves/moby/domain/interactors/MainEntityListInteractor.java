@@ -13,7 +13,7 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainEntityListInteractor implements Interactor{
+public class MainEntityListInteractor implements Interactor<MainEntityListInteractor.RequestValues>{
 
     private final AppRepository appRepository;
 
@@ -22,7 +22,7 @@ public class MainEntityListInteractor implements Interactor{
         this.appRepository = appRepository;
     }
     @Override
-    public MutableLiveData<List<MainEntity>> execute() {
+    public MutableLiveData<List<MainEntity>> execute(RequestValues requestValues) {
         final MutableLiveData<List<MainEntity>> mainEntityList = new MutableLiveData<>();
         Single<List<MainEntity>> repositorySingleRequest = appRepository.getMainEntityList();
         repositorySingleRequest
@@ -33,4 +33,9 @@ public class MainEntityListInteractor implements Interactor{
     }
 
 
+
+
+    public static class RequestValues implements Interactor.RequestValues {
+        // in this case we don't need nothing for this use case
+    }
 }

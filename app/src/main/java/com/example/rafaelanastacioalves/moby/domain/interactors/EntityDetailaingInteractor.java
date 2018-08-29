@@ -10,12 +10,14 @@ import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
 import javax.inject.Inject;
 
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class EntityDetailaingInteractor implements Interactor {
+public class EntityDetailaingInteractor implements Interactor<EntityDetailaingInteractor.RequestValues> {
 
     private final AppRepository appRepository;
 
@@ -25,45 +27,36 @@ public class EntityDetailaingInteractor implements Interactor {
     }
 
     @Override
-    public MutableLiveData<EntityDetails> execute() {
+    public MutableLiveData<EntityDetails> execute(RequestValues requestValues) {
         final MutableLiveData<EntityDetails> entityDetails = new MutableLiveData<>();
-        Single<EntityDetails> repositorySingleRequest = appRepository.getEntityDetails()
+        Single<EntityDetails> repositorySingleRequest = appRepository.getEntityDetails(requestValues.resquestId);
         Timber.i("LiveDataEntityDetailsViewModel loadData");
-
-        if(mEntityDetails.getValue() != null){
-            return;
-        }
 
 
         APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        if (tripPackageId == null) {
-            Timber.w("loadInBackground - not supposed to have null variable here");
-            return;
-        }
-        Call<EntityDetails> call = APIClient.getTripPackageDetails(tripPackageId);
+        Call<EntityDetails> call = APIClient.getTripPackageDetails(requestValues.getResquestId());
+        repositorySingleRequest
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> entityDetails.postValue(response));
 
 
-        call.enqueue(new Callback<EntityDetails>() {
-            @Override
-            public void onResponse(Call<EntityDetails> call, Response<EntityDetails> response) {
-                if (response.isSuccessful()) {
-                    Timber.i("response Successful");
-                    mEntityDetails.postValue(response.body());
-
-                } else {
-                    Timber.e(response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<EntityDetails> call, Throwable t) {
-                //TODO add more error management
-                t.printStackTrace();
-            }
-
-        });
-
-
+        return entityDetails;
 
     }
+
+    public static final class RequestValues implements Interactor.RequestValues {
+        private final String resquestId;
+
+        public RequestValues(String resquestId) {
+            this.resquestId = resquestId;
+        }
+
+
+        public String getResquestId() {
+            return resquestId;
+        }
+    }
+
+
 }

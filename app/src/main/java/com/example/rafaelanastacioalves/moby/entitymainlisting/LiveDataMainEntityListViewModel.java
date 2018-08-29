@@ -22,7 +22,7 @@ public class LiveDataMainEntityListViewModel extends ViewModel {
 
     public MutableLiveData<List<MainEntity>> getMainEntityList() {
 
-        mMainEntityList = mMainEntityListinInteractor.execute();
+        mMainEntityList = mMainEntityListinInteractor.execute(null);
         return mMainEntityList;
     }
 

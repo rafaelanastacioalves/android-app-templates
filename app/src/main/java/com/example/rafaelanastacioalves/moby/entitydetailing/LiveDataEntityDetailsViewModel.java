@@ -15,21 +15,19 @@ import timber.log.Timber;
 
 public class LiveDataEntityDetailsViewModel extends ViewModel {
 
-    private final EntityDetailaingInteractor mEntityDetailInteractor;
-    private MutableLiveData<EntityDetails> mEntityDetails = new MutableLiveData<>();
+    public  final EntityDetailaingInteractor mEntityDetailInteractor;
+    public MutableLiveData<EntityDetails> mEntityDetails;
 
     public LiveDataEntityDetailsViewModel(EntityDetailaingInteractor mInteractor) {
-        this.mEntityDetailInteractor = mInteractor
+        this.mEntityDetailInteractor = mInteractor;
     }
 
-    public MutableLiveData<EntityDetails> getEntityDetails() {
-
-        mEntityDetails = mEntityDetailInteractor.execute();
+    public MutableLiveData<EntityDetails> getEntityDetails(String tripPackageId) {
+        EntityDetailaingInteractor.RequestValues requestValues = new EntityDetailaingInteractor.RequestValues(tripPackageId);
+        mEntityDetails = mEntityDetailInteractor.execute(requestValues);
         return mEntityDetails;
     }
 
-    public void loadData(String tripPackageId) {
 
-    }
 }
 
