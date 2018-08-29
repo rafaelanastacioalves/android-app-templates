@@ -29,7 +29,6 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
     private final RecyclerViewClickListener mClickListener = this;
     private MainEntityAdapter mTripPackageListAdapter;
-    private int tripPackageListLoaderId = 10;
     private RecyclerView mRecyclerView;
     private LiveDataMainEntityListViewModel mLiveDataMainEntityListViewModel;
 
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         setupViews();
         setupRecyclerView();
         subscribe();
-        loadData();
 
     }
 
@@ -51,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         AndroidInjection.inject(this);
     }
 
-    private void loadData() {
-        mLiveDataMainEntityListViewModel.loadData();
-    }
 
     private void subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this, projectViewModelFactory).get(LiveDataMainEntityListViewModel.class);

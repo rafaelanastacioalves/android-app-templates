@@ -12,7 +12,6 @@ import java.util.List;
 public class LiveDataMainEntityListViewModel extends ViewModel {
 
     private MainEntityListInteractor mMainEntityListinInteractor;
-    private AppRepository githubRepository;
     private MutableLiveData<List<MainEntity>> mMainEntityList;
 
 
@@ -26,8 +25,4 @@ public class LiveDataMainEntityListViewModel extends ViewModel {
         return mMainEntityList;
     }
 
-
-    public void loadData() {
-
-    }
 }

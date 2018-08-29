@@ -1,5 +1,8 @@
 package com.example.rafaelanastacioalves.moby.di;
 
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailModule;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.EntityMainModule;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.LiveDataMainEntityListViewModel;
 import com.example.rafaelanastacioalves.moby.entitymainlisting.MainActivity;
@@ -14,6 +17,9 @@ public abstract class MainEntityListingModule {
 
     @ContributesAndroidInjector(modules = EntityMainModule.class)
     abstract MainActivity bindMainActivity();
+
+    @ContributesAndroidInjector(modules = EntityDetailModule.class)
+    abstract EntityDetailsFragment bindEntityDetailFragment();
 
 
 }

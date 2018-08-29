@@ -21,7 +21,7 @@ class EntityDetailViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 
-        if (modelClass.isAssignableFrom(LiveDataMainEntityListViewModel.class)){
+        if (modelClass.isAssignableFrom(LiveDataEntityDetailsViewModel.class)){
             return (T) new LiveDataEntityDetailsViewModel(mInteractor);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");

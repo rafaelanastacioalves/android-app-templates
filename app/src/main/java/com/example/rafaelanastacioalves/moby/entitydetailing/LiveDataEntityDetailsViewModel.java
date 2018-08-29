@@ -15,8 +15,8 @@ import timber.log.Timber;
 
 public class LiveDataEntityDetailsViewModel extends ViewModel {
 
-    public  final EntityDetailaingInteractor mEntityDetailInteractor;
-    public MutableLiveData<EntityDetails> mEntityDetails;
+    private EntityDetailaingInteractor mEntityDetailInteractor;
+    private MutableLiveData<EntityDetails> mEntityDetails;
 
     public LiveDataEntityDetailsViewModel(EntityDetailaingInteractor mInteractor) {
         this.mEntityDetailInteractor = mInteractor;

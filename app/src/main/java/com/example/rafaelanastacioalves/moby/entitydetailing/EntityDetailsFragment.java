@@ -35,7 +35,8 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
 
     private LiveDataEntityDetailsViewModel mLiveDataEntityDetailsViewModel;
 
-
+    @Inject
+    EntityDetailViewModelFactory entityDetailViewModelFactory;
 
     @BindView(R.id.detail_entity_detail_name)
     TextView tripPackageDetailValor;
@@ -60,7 +61,7 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
 
     private void subscribe() {
         String mPackageId = getArguments().getString(ARG_PACKAGE_ID);
-        mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this).get(LiveDataEntityDetailsViewModel.class);
+        mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this, entityDetailViewModelFactory).get(LiveDataEntityDetailsViewModel.class);
         mLiveDataEntityDetailsViewModel.getEntityDetails(mPackageId).observe(this, new Observer<EntityDetails>() {
             @Override
             public void onChanged(@Nullable EntityDetails entityDetails) {
