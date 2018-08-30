@@ -3,6 +3,7 @@ package com.example.rafaelanastacioalves.moby.entitydetailing;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,12 +26,14 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.AndroidSupportInjectionModule;
+import dagger.android.support.DaggerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EntityDetailsFragment extends Fragment implements View.OnClickListener {
+public class EntityDetailsFragment extends DaggerFragment implements View.OnClickListener {
 
     public static String ARG_PACKAGE_ID;
 
@@ -47,20 +50,20 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
 
 
 
-    public EntityDetailsFragment() {
-        // Required empty public constructor
+    @Override
+    public void onAttach(Context context) {
+        settupadagger();
+        super.onAttach(context);
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        settupadagger();
         super.onCreate(savedInstanceState);
         subscribe();
     }
 
     private void settupadagger() {
-        AndroidInjection.inject(getActivity());
+        AndroidSupportInjection.inject(this);
 
     }
 

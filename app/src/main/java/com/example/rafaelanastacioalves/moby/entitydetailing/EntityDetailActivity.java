@@ -14,7 +14,6 @@ public class EntityDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setupDagger();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_detail);
         setupActionBar();
@@ -38,14 +37,13 @@ public class EntityDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void setupDagger() {
-        AndroidInjection.inject(this);
-    }
 
     private void setupActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
     }
+
+
 
 }

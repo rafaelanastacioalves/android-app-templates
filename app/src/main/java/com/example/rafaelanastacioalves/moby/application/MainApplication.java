@@ -2,6 +2,7 @@ package com.example.rafaelanastacioalves.moby.application;
 
 import android.app.Activity;
 import android.app.Application;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
@@ -14,13 +15,16 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 import timber.log.Timber;
 
 
-public class MainApplication extends Application implements HasActivityInjector {
+public class MainApplication extends Application implements HasActivityInjector, HasSupportFragmentInjector {
     @Inject
-    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+    DispatchingAndroidInjector<Activity> dispatchingActivityAndroidInjector;
 
+    @Inject
+    DispatchingAndroidInjector<Fragment> dispatchingFragmentAndroidInjector;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -50,8 +54,15 @@ public class MainApplication extends Application implements HasActivityInjector 
 
     @Override
     public AndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
+        return dispatchingActivityAndroidInjector;
     }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return dispatchingFragmentAndroidInjector;
+    }
+
+    public HasSupportFragmentInjector
 
     /**
      * A tree which logs important information for crash reporting.
