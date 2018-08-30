@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.rafaelanastacioalves.moby.application.MainApplication;
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailModule;
 
 import javax.inject.Singleton;
 
@@ -14,7 +15,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
-@Component(modules = {AndroidSupportInjectionModule.class ,MainEntityListingModule.class, ApplicationModule.class})
+@Component(modules = {AndroidSupportInjectionModule.class, EntityDetailModule.class, MainEntityListingModule.class, ApplicationModule.class})
 public interface MyApplicationComponent {
 
     @Component.Builder

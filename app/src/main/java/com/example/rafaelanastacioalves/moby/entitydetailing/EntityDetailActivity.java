@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.rafaelanastacioalves.moby.R;
 
+import dagger.android.AndroidInjection;
 import timber.log.Timber;
 
 
@@ -13,6 +14,7 @@ public class EntityDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupDagger();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_detail);
         setupActionBar();
@@ -34,6 +36,10 @@ public class EntityDetailActivity extends AppCompatActivity {
 
             supportPostponeEnterTransition();
         }
+    }
+
+    private void setupDagger() {
+        AndroidInjection.inject(this);
     }
 
     private void setupActionBar() {

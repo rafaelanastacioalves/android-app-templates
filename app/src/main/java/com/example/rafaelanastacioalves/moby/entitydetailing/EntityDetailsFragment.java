@@ -24,6 +24,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +33,6 @@ import butterknife.ButterKnife;
 public class EntityDetailsFragment extends Fragment implements View.OnClickListener {
 
     public static String ARG_PACKAGE_ID;
-    private String PACKAGE_ID_LOADER_KEY = "package_id_loader_key";
 
     private LiveDataEntityDetailsViewModel mLiveDataEntityDetailsViewModel;
 
@@ -53,10 +54,15 @@ public class EntityDetailsFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        settupadagger();
         super.onCreate(savedInstanceState);
         subscribe();
     }
 
+    private void settupadagger() {
+        AndroidInjection.inject(getActivity());
+
+    }
 
 
     private void subscribe() {

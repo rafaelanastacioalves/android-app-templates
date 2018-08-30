@@ -19,7 +19,7 @@ public abstract class MainEntityListingModule {
     abstract MainActivity bindMainActivity();
 
     @ContributesAndroidInjector(modules = EntityDetailModule.class)
-    abstract EntityDetailsFragment bindEntityDetailFragment();
+    abstract EntityDetailActivity bindEntityDetailActivity();
 
 
 }

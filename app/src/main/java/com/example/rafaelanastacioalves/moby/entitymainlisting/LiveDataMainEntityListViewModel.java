@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModel;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor;
-import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 
 import java.util.List;
 
@@ -20,7 +19,6 @@ public class LiveDataMainEntityListViewModel extends ViewModel {
     }
 
     public MutableLiveData<List<MainEntity>> getMainEntityList() {
-
         mMainEntityList = mMainEntityListinInteractor.execute(null);
         return mMainEntityList;
     }

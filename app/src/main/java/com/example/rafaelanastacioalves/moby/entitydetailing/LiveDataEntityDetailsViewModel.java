@@ -5,13 +5,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.example.rafaelanastacioalves.moby.domain.interactors.EntityDetailaingInteractor;
-import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
-import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 public class LiveDataEntityDetailsViewModel extends ViewModel {
 
@@ -21,6 +15,7 @@ public class LiveDataEntityDetailsViewModel extends ViewModel {
     public LiveDataEntityDetailsViewModel(EntityDetailaingInteractor mInteractor) {
         this.mEntityDetailInteractor = mInteractor;
     }
+
 
     public MutableLiveData<EntityDetails> getEntityDetails(String tripPackageId) {
         EntityDetailaingInteractor.RequestValues requestValues = new EntityDetailaingInteractor.RequestValues(tripPackageId);
