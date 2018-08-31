@@ -1,20 +1,28 @@
 package com.example.rafaelanastacioalves.moby.entitydetailing;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.rafaelanastacioalves.moby.R;
 
+import javax.inject.Inject;
+
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import timber.log.Timber;
 
 
 public class EntityDetailActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidInjection.inject(this);
         setContentView(R.layout.activity_package_detail);
         setupActionBar();
 
@@ -43,7 +51,5 @@ public class EntityDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
     }
-
-
 
 }

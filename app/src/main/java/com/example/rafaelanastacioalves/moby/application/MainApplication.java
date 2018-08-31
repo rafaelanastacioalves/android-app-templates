@@ -62,7 +62,9 @@ public class MainApplication extends Application implements HasActivityInjector,
         return dispatchingFragmentAndroidInjector;
     }
 
-    public HasSupportFragmentInjector
+
+
+
 
     /**
      * A tree which logs important information for crash reporting.
