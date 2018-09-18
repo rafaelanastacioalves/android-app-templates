@@ -13,16 +13,14 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
-public class EntityDetailaingInteractor implements Interactor<EntityDetailaingInteractor.RequestValues> {
+public class EntityDetailingInteractor implements Interactor<EntityDetailingInteractor.RequestValues> {
 
     private final AppRepository appRepository;
 
     @Inject
-    EntityDetailaingInteractor(AppRepository appRepository){
+    EntityDetailingInteractor(AppRepository appRepository){
         this.appRepository = appRepository;
     }
 

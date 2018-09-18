@@ -53,6 +53,11 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoExt"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoExt"
 
+    // Required -- JUnit 4 framework
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    // Optional -- Mockito framework
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+
 
     implementation "com.android.support:support-annotations:$rootProject.androidSupportLibrariesExt"
     implementation "com.android.support:recyclerview-v7:$rootProject.androidSupportLibrariesExt"

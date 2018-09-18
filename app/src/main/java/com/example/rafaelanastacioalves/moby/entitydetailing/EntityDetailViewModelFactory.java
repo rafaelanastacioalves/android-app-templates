@@ -4,16 +4,14 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.rafaelanastacioalves.moby.domain.interactors.EntityDetailaingInteractor;
-import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor;
-import com.example.rafaelanastacioalves.moby.entitymainlisting.LiveDataMainEntityListViewModel;
+import com.example.rafaelanastacioalves.moby.domain.interactors.EntityDetailingInteractor;
 
 
 class EntityDetailViewModelFactory implements ViewModelProvider.Factory {
 
-    private final EntityDetailaingInteractor mInteractor;
+    private final EntityDetailingInteractor mInteractor;
 
-    public EntityDetailViewModelFactory(EntityDetailaingInteractor interactor){
+    public EntityDetailViewModelFactory(EntityDetailingInteractor interactor){
         this.mInteractor = interactor;
     }
 
