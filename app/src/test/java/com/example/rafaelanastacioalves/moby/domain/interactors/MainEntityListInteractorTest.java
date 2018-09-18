@@ -8,14 +8,23 @@ import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import java.util.List;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
+import static org.mockito.Mockito.when;
 
 public class MainEntityListInteractorTest {
 
@@ -25,6 +34,12 @@ public class MainEntityListInteractorTest {
     @Mock
     AppRepository appRepository;
 
+    @Captor
+    private ArgumentCaptor<Callback> callbackArgumentCaptor;
+
+    @Mock
+    private Call<List<MainEntity>> mockedCall;
+
 
 
     @Test
@@ -32,8 +47,17 @@ public class MainEntityListInteractorTest {
         MainEntityListInteractor interactor = new MainEntityListInteractor(appRepository);
         MainEntityListInteractor.RequestValues resquestValue = null;
 
-        Object returnedObject = interactor.execute(resquestValue);
-        Assert.assertThat(returnedObject.getClass(), equals( ));
+        when(appRepository.getMainEntityList()).thenReturn(new Single<List<MainEntity>>() {
+            @Override
+            protected void subscribeActual(SingleObserver<? super List<MainEntity>> observer) {
+
+            }
+        });
+
+        callbackArgumentCaptor.getValue().onResponse(mockedCall, Response);
+
+        MutableLiveData<List<MainEntity>> returnedObject = interactor.execute(resquestValue);
+        Assert.assertThat(returnedObject.getValue(),  is(0));
     }
 
 
