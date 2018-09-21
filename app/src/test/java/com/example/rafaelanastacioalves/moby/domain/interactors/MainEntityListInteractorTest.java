@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -22,6 +23,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static io.reactivex.Single.just;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
 import static org.mockito.Mockito.when;
@@ -47,17 +50,12 @@ public class MainEntityListInteractorTest {
         MainEntityListInteractor interactor = new MainEntityListInteractor(appRepository);
         MainEntityListInteractor.RequestValues resquestValue = null;
 
-        when(appRepository.getMainEntityList()).thenReturn(new Single<List<MainEntity>>() {
-            @Override
-            protected void subscribeActual(SingleObserver<? super List<MainEntity>> observer) {
+        when(appRepository.getMainEntityList()).thenReturn(
+                just(new ArrayList<MainEntity>())
+        );
 
-            }
-        });
-
-        callbackArgumentCaptor.getValue().onResponse(mockedCall, Response);
-
-        MutableLiveData<List<MainEntity>> returnedObject = interactor.execute(resquestValue);
-        Assert.assertThat(returnedObject.getValue(),  is(0));
+        Object returnedObject = interactor.execute(resquestValue);
+        Assert.assertThat(returnedObject, instanceOf(MutableLiveData.class));
     }
 
 
