@@ -1,7 +1,10 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
+import android.arch.lifecycle.LiveData;
+
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 
 import java.util.List;
 
@@ -16,30 +19,22 @@ import timber.log.Timber;
 @Singleton
 public class AppRepository {
 
-    public Single<List<MainEntity>> getMainEntityList() {
-        return Single.create(emitter -> {
-            APIClient apiClient = ServiceGenerator.createService(APIClient.class);
-            Call<List<MainEntity>> call = apiClient.getTripPackageList();
-            call.enqueue(new Callback<List<MainEntity>>() {
-                @Override
-                public void onResponse(Call<List<MainEntity>> call, Response<List<MainEntity>> response) {
-                    if (response.isSuccessful()) {
-                        Timber.i("response Successful");
-                        emitter.onSuccess(response.body());
-                    }
-                }
+    public LiveData<Resource<List<MainEntity>>> getMainEntityList() {
+        APIClient apiClient = ServiceGenerator.createService(APIClient.class);
+        return new NetworkBoundSource<List<MainEntity>, List<MainEntity>>() {
+            @Override
+            protected void onFetchFailed() {
 
-                @Override
-                public void onFailure(Call<List<MainEntity>> call, Throwable t) {
-                    emitter.onError(t);
-                }
-            });
+            }
 
-        });
-
+            @Override
+            protected Call<List<MainEntity>> createCall() {
+                return apiClient.getTripPackageList();
+            }
+        }.asLiveData();
     }
 
-    public Single<EntityDetails> getEntityDetails(String id){
+    public Single<EntityDetails> getEntityDetails(String id) {
         return Single.create(emitter -> {
             APIClient apiClient = ServiceGenerator.createService(APIClient.class);
             Call<EntityDetails> call = apiClient.getTripPackageDetails(id);

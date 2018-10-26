@@ -1,5 +1,6 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
@@ -9,6 +10,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
+/*
+ * Normalmente usa-se o ResultType para quando você finalmente carrega do DB.
+ * No, caso, como não temos DB, ignoramos o RequestType e consideramos o ResultType
+ * direto.
+ */
 public abstract class NetworkBoundSource<ResultType, RequestType> {
 
     public static final String ERRO_DE_NETWORK = "Erro de Network";
@@ -31,7 +37,7 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
                         setValue(Resource.success(response.body()));
                     }else {
                         Timber.w("API response: NOT Successful");
-                        setValue(Resource.error(ERRO_DE_API,null);
+                        setValue(Resource.error(ERRO_DE_API,null));
                     }
 
                 }
@@ -52,9 +58,12 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
 
     private <T> void setValue(Resource<ResultType> newValue) {
         result.setValue(newValue);
-
     }
 
     protected abstract Call<ResultType> createCall();
+
+    public LiveData<Resource<ResultType>> asLiveData() {
+        return result;
+    }
 
 }

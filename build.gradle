@@ -25,7 +25,7 @@ allprojects {
 
 ext {
     compileSdkVersionExt = 27
-    buildToolsVersionExt = "27.0.3"
+    buildToolsVersionExt = "28.0.3"
     minSdkVersionExt = 15
     targetSdkVersionExt = 26
     crashlytics = "2.7.1@aar"
@@ -39,7 +39,7 @@ ext {
     jakewhartonStuff = "8.4.0"
     timberExt = "4.5.1"
     picassoExt = "2.71828"
-    espressoExt = "3.0.1"
+    espressoExt = "3.1.0"
     mockWebServerExt = "3.8.0"
     testRunnerExt = "1.0.1"
     archLifecycleVersion = "1.1.1"
