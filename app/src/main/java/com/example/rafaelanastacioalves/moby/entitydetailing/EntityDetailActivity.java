@@ -25,8 +25,6 @@ public class EntityDetailActivity extends AppCompatActivity {
         AndroidInjection.inject(this);
         setContentView(R.layout.activity_package_detail);
         setupActionBar();
-
-
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
@@ -39,12 +37,9 @@ public class EntityDetailActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.package_detail_fragment_container, fragment)
                     .commit();
-
-
             supportPostponeEnterTransition();
         }
     }
-
 
     private void setupActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);

@@ -1,8 +1,11 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
+import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 
 import org.junit.Assert;
@@ -43,19 +46,19 @@ public class MainEntityListInteractorTest {
     @Mock
     private Call<List<MainEntity>> mockedCall;
 
-
-
     @Test
     public void shouldReturnLiveDataAfterExecute(){
         MainEntityListInteractor interactor = new MainEntityListInteractor(appRepository);
         MainEntityListInteractor.RequestValues resquestValue = null;
 
         when(appRepository.getMainEntityList()).thenReturn(
-                just(new ArrayList<MainEntity>())
+                new LiveData<Resource<List<MainEntity>>>() {
+
+                }
         );
 
         Object returnedObject = interactor.execute(resquestValue);
-        Assert.assertThat(returnedObject, instanceOf(MutableLiveData.class));
+        Assert.assertThat(returnedObject, instanceOf(LiveData.class));
     }
 
 

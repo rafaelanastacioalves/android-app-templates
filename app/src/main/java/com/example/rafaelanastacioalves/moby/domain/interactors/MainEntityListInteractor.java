@@ -34,8 +34,6 @@ public class MainEntityListInteractor implements Interactor<MainEntityListIntera
         return repositoryLiveData ;
     }
 
-
-
     public static class RequestValues implements Interactor.RequestValues {
         // in this case we don't need nothing for this use case
     }

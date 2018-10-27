@@ -19,7 +19,7 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
 
     public static final String ERRO_DE_NETWORK = "Erro de Network";
     private static final String ERRO_DE_API = "Erro de API";
-    private MutableLiveData<Resource<ResultType>> result;
+    private MutableLiveData<Resource<ResultType>> result = new MutableLiveData<>();
 
     public NetworkBoundSource(){
         result.setValue(Resource.loading(null));

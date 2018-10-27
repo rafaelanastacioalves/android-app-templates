@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment;
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity;
 import com.example.rafaelanastacioalves.moby.R;
@@ -52,12 +53,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     private void subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this, projectViewModelFactory).get(LiveDataMainEntityListViewModel.class);
-        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<List<MainEntity>>() {
+        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<Resource<List<MainEntity>>>() {
             @Override
-            public void onChanged(@Nullable List<MainEntity> mainEntities) {
+            public void onChanged(@Nullable Resource<List<MainEntity>> listResource) {
                 Timber.d("On Changed");
-                populateRecyclerView(mainEntities);
+                populateRecyclerView(listResource.data);
             }
+
+
         });
     }
 

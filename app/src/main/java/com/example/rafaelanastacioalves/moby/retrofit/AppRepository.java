@@ -34,27 +34,19 @@ public class AppRepository {
         }.asLiveData();
     }
 
-    public Single<EntityDetails> getEntityDetails(String id) {
-        return Single.create(emitter -> {
-            APIClient apiClient = ServiceGenerator.createService(APIClient.class);
-            Call<EntityDetails> call = apiClient.getTripPackageDetails(id);
-            call.enqueue(new Callback<EntityDetails>() {
-                @Override
-                public void onResponse(Call<EntityDetails> call, Response<EntityDetails> response) {
-                    if (response.isSuccessful()) {
-                        Timber.i("response Successful");
-                        emitter.onSuccess(response.body());
-                    }
-                }
+    public LiveData<Resource<EntityDetails>> getEntityDetails(String id) {
+        APIClient apiClient = ServiceGenerator.createService(APIClient.class);
+        return new NetworkBoundSource<EntityDetails, EntityDetails>() {
+            @Override
+            protected void onFetchFailed() {
 
-                @Override
-                public void onFailure(Call<EntityDetails> call, Throwable t) {
-                    emitter.onError(t);
-                }
-            });
+            }
 
-        });
-
+            @Override
+            protected Call<EntityDetails> createCall() {
+                return apiClient.getTripPackageDetails(id);
+            }
+        }.asLiveData();
     }
 }
 

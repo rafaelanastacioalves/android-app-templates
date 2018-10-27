@@ -1,11 +1,16 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 import com.example.rafaelanastacioalves.moby.retrofit.APIClient;
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository;
 import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,21 +30,11 @@ public class EntityDetailingInteractor implements Interactor<EntityDetailingInte
     }
 
     @Override
-    public MutableLiveData<EntityDetails> execute(RequestValues requestValues) {
-        final MutableLiveData<EntityDetails> entityDetails = new MutableLiveData<>();
-        Single<EntityDetails> repositorySingleRequest = appRepository.getEntityDetails(requestValues.resquestId);
-        Timber.i("LiveDataEntityDetailsViewModel loadData");
-
-
-        APIClient APIClient = ServiceGenerator.createService(APIClient.class);
-        Call<EntityDetails> call = APIClient.getTripPackageDetails(requestValues.getResquestId());
-        repositorySingleRequest
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> entityDetails.postValue(response));
-
-
-        return entityDetails;
+    public LiveData<Resource<EntityDetails>> execute(RequestValues requestValues) {
+        LiveData<Resource<EntityDetails>> repositoryLiveData = appRepository.getEntityDetails(requestValues.resquestId);
+        // aqui podemos aplicar transformações baseadas em regras de negócio usando
+        // Transformations. Ex.: Transformations.map()
+        return repositoryLiveData ;
 
     }
 

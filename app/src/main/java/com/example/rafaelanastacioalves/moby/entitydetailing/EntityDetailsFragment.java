@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.rafaelanastacioalves.moby.R;
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -48,8 +49,6 @@ public class EntityDetailsFragment extends DaggerFragment implements View.OnClic
     @BindView(R.id.trip_package_detail_imageview)
     ImageView tripPackageDetailImageview;
 
-
-
     @Override
     public void onAttach(Context context) {
         settupadagger();
@@ -64,22 +63,18 @@ public class EntityDetailsFragment extends DaggerFragment implements View.OnClic
 
     private void settupadagger() {
         AndroidSupportInjection.inject(this);
-
     }
-
 
     private void subscribe() {
         String mPackageId = getArguments().getString(ARG_PACKAGE_ID);
         mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this, entityDetailViewModelFactory).get(LiveDataEntityDetailsViewModel.class);
-        mLiveDataEntityDetailsViewModel.getEntityDetails(mPackageId).observe(this, new Observer<EntityDetails>() {
+        mLiveDataEntityDetailsViewModel.getEntityDetails(mPackageId).observe(this, new Observer<Resource<EntityDetails>>() {
             @Override
-            public void onChanged(@Nullable EntityDetails entityDetails) {
-                setViewsWith(entityDetails);
+            public void onChanged(@Nullable Resource<EntityDetails> entityDetails) {
+                setViewsWith(entityDetails.data);
             }
         });
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,14 +82,11 @@ public class EntityDetailsFragment extends DaggerFragment implements View.OnClic
         return inflateViews(inflater, container);
     }
 
-
     private View inflateViews(LayoutInflater inflater, ViewGroup container) {
         View rootView = inflater.inflate(R.layout.fragment_detail_entity_detail_view, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
-
-
 
     private void setupActionBarWithTitle(String title) {
         AppCompatActivity mActivity = (AppCompatActivity) getActivity();
@@ -102,13 +94,10 @@ public class EntityDetailsFragment extends DaggerFragment implements View.OnClic
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(title);
-
-
         }
     }
 
     private void setViewsWith(EntityDetails entityDetails) {
-
         tripPackageDetailValor.setText(entityDetails.getPrice());
         setupActionBarWithTitle(entityDetails.getTitle());
         Picasso.get()
@@ -124,11 +113,7 @@ public class EntityDetailsFragment extends DaggerFragment implements View.OnClic
 
                     }
                 });
-
-
     }
-
-
 
     @Override
     public void onDestroy() {
@@ -140,6 +125,4 @@ public class EntityDetailsFragment extends DaggerFragment implements View.OnClic
     public void onClick(View v) {
         Toast.makeText(getActivity(), "Comprado!", Toast.LENGTH_SHORT).show();
     }
-
-
 }
