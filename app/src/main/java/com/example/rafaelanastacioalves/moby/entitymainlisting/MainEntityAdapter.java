@@ -1,7 +1,9 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
+import android.arch.paging.PagedListAdapter;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,13 +14,27 @@ import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder> {
+class MainEntityAdapter extends PagedListAdapter<MainEntity, MainEntityViewHolder> {
+    private static final DiffUtil.ItemCallback<MainEntity> DIFF_CALLBACK = new DiffUtil.ItemCallback<MainEntity>() {
+
+        @Override
+        public boolean areItemsTheSame(@NonNull MainEntity mainEntity, @NonNull MainEntity t1) {
+            return mainEntity.getId() == t1.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull MainEntity mainEntity, @NonNull MainEntity t1) {
+            return mainEntity.getId() == t1.getId();
+        }
+    };
+
     private RecyclerViewClickListener recyclerViewClickListener;
     private List<MainEntity> items = new ArrayList<>();
 
     private Context mContext;
 
-    public MainEntityAdapter(Context context) {
+    MainEntityAdapter(Context context) {
+        super(DIFF_CALLBACK);
         mContext = context;
     }
 
@@ -45,7 +61,6 @@ public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder
     }
 
 
-
     @Override
     public void onBindViewHolder(MainEntityViewHolder holder, int position) {
         MainEntity aRepoW = getItems().get(position);
@@ -54,9 +69,9 @@ public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder
 
     @Override
     public int getItemCount() {
-        if (getItems() != null){
+        if (getItems() != null) {
             return getItems().size();
-        }else{
+        } else {
             return 0;
         }
     }

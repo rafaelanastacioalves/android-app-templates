@@ -1,26 +1,23 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.arch.paging.PagedList;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor;
-
-import java.util.List;
 
 public class LiveDataMainEntityListViewModel extends ViewModel {
 
     private MainEntityListInteractor mMainEntityListinInteractor;
-    private LiveData<Resource<List<MainEntity>>> mMainEntityList;
+    private LiveData<PagedList<MainEntity>> mMainEntityList;
 
 
     public LiveDataMainEntityListViewModel(MainEntityListInteractor interactor){
         this.mMainEntityListinInteractor = interactor;
     }
 
-    public LiveData<Resource<List<MainEntity>>> getMainEntityList() {
+    public LiveData<PagedList<MainEntity>> getMainEntityList() {
         mMainEntityList = mMainEntityListinInteractor.execute(null);
         return mMainEntityList;
     }

@@ -3,12 +3,11 @@
 buildscript {
     repositories {
         jcenter()
-        mavenCentral()
 
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -17,19 +16,17 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven { url 'https://maven.fabric.io/public' }
-
         google()
     }
 }
 
 ext {
-    compileSdkVersionExt = 27
+    compileSdkVersionExt = 28
     buildToolsVersionExt = "28.0.3"
     minSdkVersionExt = 15
-    targetSdkVersionExt = 26
+    targetSdkVersionExt = 27
     crashlytics = "2.7.1@aar"
-    androidSupportLibrariesExt = "27.1.0"
+    androidSupportLibrariesExt = "28.+"
     firebaseUiExt = "3.1.0"
     firebaseExt = "11.4.2"
     facebookAndroidExt = "4.27.0"
@@ -48,7 +45,7 @@ ext {
     rxJavaVersion = "2.x.x"
     junitVersion = "4.12"
     mockitoVersion = "1.10.19"
-
+    pagingVersion = "1.0.+"
 
 
 }

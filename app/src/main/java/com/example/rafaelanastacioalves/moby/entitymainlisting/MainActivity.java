@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     private void subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this, projectViewModelFactory).get(LiveDataMainEntityListViewModel.class);
-        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<Resource<List<MainEntity>>>() {
+        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<android.arch.paging.PagedList<MainEntity>>() {
             @Override
             public void onChanged(@Nullable Resource<List<MainEntity>> listResource) {
                 Timber.d("On Changed");
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
                     transitionImageView, transitionImageView.getTransitionName()).toBundle();
             startActivity(i, bundle);
-
+` `
         } else {
             startActivity(i);
         }

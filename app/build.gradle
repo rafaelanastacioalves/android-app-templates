@@ -103,6 +103,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
 
+    // paging
+
+    implementation "android.arch.paging:runtime:$rootProject.pagingVersion"
+
 
 
 

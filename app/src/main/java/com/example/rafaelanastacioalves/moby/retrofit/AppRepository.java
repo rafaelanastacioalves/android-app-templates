@@ -1,12 +1,15 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.LivePagedListBuilder;
+import android.arch.paging.PagedList;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
@@ -16,22 +19,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
+import static android.arch.lifecycle.Transformations.switchMap;
+
 @Singleton
 public class AppRepository {
 
-    public LiveData<Resource<List<MainEntity>>> getMainEntityList() {
-        APIClient apiClient = ServiceGenerator.createService(APIClient.class);
-        return new NetworkBoundSource<List<MainEntity>, List<MainEntity>>() {
-            @Override
-            protected void onFetchFailed() {
+    public LiveData<PagedList<MainEntity>> getMainEntityList() {
+        DataSourceFactory dataSourceFactory = new DataSourceFactory();
 
-            }
+        LivePagedListBuilder<String, MainEntity> mLivePagedListBuilder =  new LivePagedListBuilder<>(dataSourceFactory, 5);
 
-            @Override
-            protected Call<List<MainEntity>> createCall() {
-                return apiClient.getTripPackageList();
-            }
-        }.asLiveData();
+        return mLivePagedListBuilder
+                .setFetchExecutor(Executors.newFixedThreadPool(5))
+                .build();
     }
 
     public LiveData<Resource<EntityDetails>> getEntityDetails(String id) {
