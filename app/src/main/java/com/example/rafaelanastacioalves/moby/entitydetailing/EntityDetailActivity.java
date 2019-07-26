@@ -10,9 +10,7 @@ import com.example.rafaelanastacioalves.moby.R;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
+
 import timber.log.Timber;
 
 

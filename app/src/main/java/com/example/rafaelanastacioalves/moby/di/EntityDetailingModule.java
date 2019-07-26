@@ -9,7 +9,6 @@ import javax.inject.Scope;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import dagger.android.support.FragmentKey;
 
 @Module
 public abstract class EntityDetailingModule {

@@ -24,7 +24,7 @@ class MainEntityAdapter extends PagedListAdapter<MainEntity, MainEntityViewHolde
 
         @Override
         public boolean areContentsTheSame(@NonNull MainEntity mainEntity, @NonNull MainEntity t1) {
-            return mainEntity.getId() == t1.getId();
+            return mainEntity == t1;
         }
     };
 

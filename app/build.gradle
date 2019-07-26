@@ -17,6 +17,8 @@ android {
         unitTests.returnDefaultValues = true
     }
 
+    compileOptions.incremental = false
+
     testBuildType "instrumentation"
     buildTypes {
 

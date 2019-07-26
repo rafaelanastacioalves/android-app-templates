@@ -2,6 +2,7 @@ package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,15 +54,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     private void subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this, projectViewModelFactory).get(LiveDataMainEntityListViewModel.class);
-        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, new Observer<android.arch.paging.PagedList<MainEntity>>() {
-            @Override
-            public void onChanged(@Nullable Resource<List<MainEntity>> listResource) {
-                Timber.d("On Changed");
-                populateRecyclerView(listResource.data);
-            }
-
-
-        });
+        mLiveDataMainEntityListViewModel.getMainEntityList().observe(this, mainEntities ->
+                populateRecyclerView(mainEntities)
+        );
     }
 
     private void setupViews() {
@@ -82,14 +77,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
 
-    private void populateRecyclerView(List<MainEntity> data) {
+    private void populateRecyclerView(PagedList<MainEntity> data) {
         if (data == null) {
             mTripPackageListAdapter.setItems(null);
             //TODO add any error managing
             Timber.w("Nothing returned from Trip Package List API");
 
         } else {
-            mTripPackageListAdapter.setItems(data);
+            mTripPackageListAdapter.submitList(data);
         }
 
     }
@@ -114,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
                     transitionImageView, transitionImageView.getTransitionName()).toBundle();
             startActivity(i, bundle);
-` `
         } else {
             startActivity(i);
         }
