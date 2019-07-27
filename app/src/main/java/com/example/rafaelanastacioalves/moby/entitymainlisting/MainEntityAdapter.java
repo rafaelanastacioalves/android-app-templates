@@ -19,7 +19,7 @@ class MainEntityAdapter extends PagedListAdapter<MainEntity, MainEntityViewHolde
 
         @Override
         public boolean areItemsTheSame(@NonNull MainEntity mainEntity, @NonNull MainEntity t1) {
-            return mainEntity.getId() == t1.getId();
+            return mainEntity.getId().equals(t1.getId()) && mainEntity.getPrice().equals(t1.getPrice());
         }
 
         @Override
@@ -43,17 +43,6 @@ class MainEntityAdapter extends PagedListAdapter<MainEntity, MainEntityViewHolde
         this.recyclerViewClickListener = aRVC;
     }
 
-    public List<MainEntity> getItems() {
-        return this.items;
-    }
-
-    public void setItems(List<MainEntity> items) {
-        this.items = items;
-        notifyDataSetChanged();
-
-
-    }
-
     @Override
     public MainEntityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MainEntityViewHolder(LayoutInflater.from(parent.getContext())
@@ -63,17 +52,9 @@ class MainEntityAdapter extends PagedListAdapter<MainEntity, MainEntityViewHolde
 
     @Override
     public void onBindViewHolder(MainEntityViewHolder holder, int position) {
-        MainEntity aRepoW = getItems().get(position);
+        MainEntity aRepoW = getItem(position);
         ((MainEntityViewHolder) holder).bind(aRepoW, mContext);
     }
 
-    @Override
-    public int getItemCount() {
-        if (getItems() != null) {
-            return getItems().size();
-        } else {
-            return 0;
-        }
-    }
 }
 

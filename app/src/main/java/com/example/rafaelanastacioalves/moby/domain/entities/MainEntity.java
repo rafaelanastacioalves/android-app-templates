@@ -24,4 +24,8 @@ public class MainEntity {
     public String getImage_url() {
         return image_url;
     }
+
+    public String getPrice() {
+        return price;
+    }
 }

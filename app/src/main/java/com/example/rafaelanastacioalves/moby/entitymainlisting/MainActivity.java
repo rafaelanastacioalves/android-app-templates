@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     private void populateRecyclerView(PagedList<MainEntity> data) {
         if (data == null) {
-            mTripPackageListAdapter.setItems(null);
             //TODO add any error managing
             Timber.w("Nothing returned from Trip Package List API");
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     @Override
     public void onClick(View view, int position) {
-        MainEntity MainEntity = (MainEntity) mTripPackageListAdapter.getItems().get(position);
+        MainEntity MainEntity = (MainEntity) mTripPackageListAdapter.getCurrentList().get(position);
 
         AppCompatImageView transitionImageView = view.findViewById(R.id.main_entity_imageview);
         startActivityByVersion(MainEntity, transitionImageView);
