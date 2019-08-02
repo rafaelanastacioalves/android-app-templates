@@ -13,11 +13,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
-import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment;
-import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity;
 import com.example.rafaelanastacioalves.moby.R;
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity;
+import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment;
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener;
 
 import java.util.List;
@@ -57,11 +57,46 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             @Override
             public void onChanged(@Nullable Resource<List<MainEntity>> listResource) {
                 Timber.d("On Changed");
-                populateRecyclerView(listResource.data);
+                if (listResource != null) {
+                    switch (listResource.status) {
+                        case INTERNAL_SERVER_ERROR:
+                            hideLoading();
+                            showErrorView();
+                            break;
+                        case GENERIC_ERROR:
+                            Timber.d("Generic Error");
+                            hideLoading();
+                            showErrorView();
+                            break;
+                        case LOADING:
+                            showLoading();
+                            break;
+                        case SUCCESS:
+                            Timber.d("Success");
+                            hideLoading();
+                            populateRecyclerView(listResource.data);
+                            break;
+
+                    }
+                }
             }
 
 
         });
+    }
+
+    private void hideLoading() {
+
+    }
+
+    private void showLoading() {
+
+    }
+
+
+
+    private void showErrorView() {
+        //TODO: implement error view
     }
 
     private void setupViews() {

@@ -5,8 +5,11 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.HttpException;
 import retrofit2.Response;
 import timber.log.Timber;
 
@@ -37,7 +40,7 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
                         setValue(Resource.success(response.body()));
                     }else {
                         Timber.w("API response: NOT Successful");
-                        setValue(Resource.error(ERRO_DE_API,null));
+                        setValue(Resource.error(Resource.Status.GENERIC_ERROR,null, null));
                     }
 
                 }
@@ -49,7 +52,16 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
                 //Aqui pode ter uma mensagem personalizada... Não deveria ter mensagem
                 //De throwable
                 Timber.e("Erro de network: " + t.getMessage());
-                setValue(Resource.error(ERRO_DE_NETWORK,null));
+                if (t instanceof HttpException){
+
+                    HttpException httpException = (HttpException) t;
+
+                    if (httpException.code() == HttpsURLConnection.HTTP_INTERNAL_ERROR){
+                        setValue(Resource.error(Resource.Status.INTERNAL_SERVER_ERROR, null, null));
+                    }
+                }else{
+                    setValue(Resource.error(Resource.Status.GENERIC_ERROR,null, null));
+                }
             }
         });
     }
