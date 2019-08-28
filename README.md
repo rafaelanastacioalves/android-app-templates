@@ -4,7 +4,7 @@
 
 ## Descrição Geral
 
-Desafio tecnico da empresa *******.
+Descrição geral *******.
 
 ![tela de listagem](captures/)
 
