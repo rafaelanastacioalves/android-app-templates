@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    ext.kotlin_version = '1.+'
     repositories {
         jcenter()
         mavenCentral()
@@ -44,7 +44,8 @@ ext {
     espressoExt = "3.0.1"
     mockWebServerExt = "3.8.0"
     testRunnerExt = "1.0.1"
-    archLifecycleVersion = "1.1.1"
+    archLifecycleVersion = "1.+"
+    android_ktx_version = "2.+"
 
 
 }

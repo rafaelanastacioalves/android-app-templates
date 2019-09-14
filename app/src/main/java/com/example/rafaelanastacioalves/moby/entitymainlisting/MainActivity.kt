@@ -2,6 +2,7 @@ package com.example.rafaelanastacioalves.moby.entitymainlisting
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +12,8 @@ import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+
+
 
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
     }
 
     private fun subscribe() {
-        mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel::class.java!!)
+        mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel::class.java)
         mLiveDataMainEntityListViewModel.mainEntityList.observe(this, Observer { mainEntities ->
             Timber.d("On Changed")
             populateRecyclerView(mainEntities)
