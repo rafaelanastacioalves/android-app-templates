@@ -37,32 +37,15 @@ class LiveDataMainEntityListViewModel : ViewModel() {
         var call: Call<List<MainEntity>> = APIClient.getTripPackageList();
 
         viewModelScope.launch(Dispatchers.IO){
-            mainEntityList.postValue(convertToSuspend(call))
+            mainEntityList.postValue(call.await());
         }
 
     }
 
-
-    suspend fun convertToSuspend(call: Call<List<MainEntity>>): List<MainEntity>? {
-        return suspendCoroutine { continuation ->
-            call.enqueue(object : Callback<List<MainEntity>> {
-
-                override fun onResponse(call: Call<List<MainEntity>>, response: Response<List<MainEntity>>) {
-                    if (response.isSuccessful()) {
-                        Timber.i("response Successful");
-                        continuation.resume(response.body());
-                    }
-                }
-
-                override fun onFailure(call: Call<List<MainEntity>>, t: Throwable) {
-                    continuation.resumeWithException(t);
-                }
-            })
-        }
-    }
 
     suspend fun <T> Call<T>.await(): T? {
         return suspendCoroutine { continuation ->
+            //TODO encapsulate in Resource class
             enqueue(object : Callback<T> {
 
                 override fun onResponse(call: Call<T>, response: Response<T?>) {
