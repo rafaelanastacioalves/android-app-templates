@@ -3,8 +3,8 @@ package com.example.rafaelanastacioalves.moby.entities
 import android.support.annotation.Nullable
 
 class Resource<T> constructor(
-        status: Status?,
-        data: T?,
+        status: Status,
+        val data: T?,
         message: String?) {
 
     companion object Factory {
@@ -13,9 +13,8 @@ class Resource<T> constructor(
             return Resource(Status.SUCCESS,successData, null);
         }
 
-        fun <T> error(status: Status, data: T?, msg: String): Resource<T> {
-            val resource = Resource(status, data, msg)
-            return resource
+        fun <T> error(status: Status, data: T?, msg: String?): Resource<T> {
+            return Resource(status, data, msg)
         }
 
         fun <T> loading(): Resource<T> {

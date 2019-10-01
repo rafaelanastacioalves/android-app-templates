@@ -35,7 +35,7 @@ ext {
     firebaseUiExt = "3.1.0"
     firebaseExt = "11.4.2"
     facebookAndroidExt = "4.27.0"
-    retrofitExt = "2.4.0"
+    retrofitExt = "2.6.+"
     okhttp3Ext = "3.10.0"
     androidConstraintLayout = "1.0.2"
     jakewhartonStuff = "8.4.0"

@@ -69,14 +69,14 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
     }
 
 
-    private fun populateRecyclerView(data: List<MainEntity>?) {
-        if (data == null) {
+    private fun populateRecyclerView(list: List<MainEntity>?) {
+        if (list == null) {
             mTripPackageListAdapter!!.setItems(null)
             //TODO add any error managing
             Timber.w("Nothing returned from Trip Package List API")
 
         } else {
-            mTripPackageListAdapter!!.setItems(data)
+            mTripPackageListAdapter!!.setItems(list)
         }
 
     }
