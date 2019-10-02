@@ -17,7 +17,7 @@ class LiveDataMainEntityListViewModel : ViewModel() {
 
     val viewModelScope = CoroutineScope(Dispatchers.Main);
 
-    fun loadData() {
+    suspend fun loadData() {
 
         Timber.i("LiveDataMainEntityListViewModel loadData");
 
