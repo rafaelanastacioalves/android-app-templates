@@ -2,10 +2,7 @@ package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.rafaelanastacioalves.moby.entities.MainEntity
-import com.example.rafaelanastacioalves.moby.entities.Resource
-import com.example.rafaelanastacioalves.moby.retrofit.APIClient
-import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,9 +22,8 @@ class LiveDataMainEntityListViewModel : ViewModel() {
             return;
         }
 
-        var apiClient: APIClient = ServiceGenerator.createService(APIClient::class.java);
         viewModelScope.launch(Dispatchers.IO) {
-            mainEntityList.postValue(apiClient.getTripPackageList())
+            mainEntityList.postValue()
 
         }
 
