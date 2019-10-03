@@ -1,7 +1,8 @@
 package com.example.rafaelanastacioalves.moby.retrofit
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.example.rafaelanastacioalves.moby.entities.Resource
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -52,6 +53,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         }
     }
 
-    abstract fun makeCall(): ResultType?
+    abstract suspend fun makeCall(): ResultType?
+
+    fun asLiveData(): LiveData<Resource<ResultType>> {
+
+        return result;
+    }
 
 }

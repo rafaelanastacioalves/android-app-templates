@@ -18,7 +18,7 @@ import android.view.View
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity
 import com.example.rafaelanastacioalves.moby.R
-import com.example.rafaelanastacioalves.moby.entities.MainEntity
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 
 import timber.log.Timber

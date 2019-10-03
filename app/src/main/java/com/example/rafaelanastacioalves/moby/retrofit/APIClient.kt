@@ -1,8 +1,8 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
 
-import com.example.rafaelanastacioalves.moby.entities.EntityDetails
-import com.example.rafaelanastacioalves.moby.entities.MainEntity
+import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Path
