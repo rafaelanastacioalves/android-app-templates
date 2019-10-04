@@ -1,9 +1,12 @@
 package com.example.rafaelanastacioalves.moby.entitydetailing
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource
+import com.example.rafaelanastacioalves.moby.domain.interactors.EntityDetailsInteractor
 import com.example.rafaelanastacioalves.moby.retrofit.APIClient
 import com.example.rafaelanastacioalves.moby.retrofit.ServiceGenerator
 
@@ -16,41 +19,12 @@ internal class LiveDataEntityDetailsViewModel : ViewModel() {
 
     val entityDetails = MutableLiveData<EntityDetails>()
 
-    fun loadData(tripPackageId: String?) {
+    val entityDetailsInteractor: EntityDetailsInteractor = EntityDetailsInteractor()
+
+    fun loadData(tripPackageId: String?) : LiveData<Resource<EntityDetails>> {
         Timber.i("LiveDataEntityDetailsViewModel loadData")
 
-        if (entityDetails.value != null) {
-            return
-        }
-
-
-        val APIClient = ServiceGenerator.createService(APIClient::class.java)
-        if (tripPackageId == null) {
-            Timber.w("loadInBackground - not supposed to have null variable here")
-            return
-        }
-        val call = APIClient.getTripPackageDetails(tripPackageId)
-
-
-        call.enqueue(object : Callback<EntityDetails> {
-            override fun onResponse(call: Call<EntityDetails>, response: Response<EntityDetails>) {
-                if (response.isSuccessful) {
-                    Timber.i("response Successful")
-                    entityDetails.postValue(response.body())
-
-                } else {
-                    Timber.e(response.message())
-                }
-            }
-
-            override fun onFailure(call: Call<EntityDetails>, t: Throwable) {
-                //TODO add more error management
-                t.printStackTrace()
-            }
-
-        })
-
-
+        return entityDetailsInteractor.execute(tripPackageId?.let{EntityDetailsInteractor.RequestValues(it)})
     }
 }
 

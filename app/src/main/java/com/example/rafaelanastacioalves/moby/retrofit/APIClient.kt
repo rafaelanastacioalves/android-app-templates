@@ -14,6 +14,6 @@ interface APIClient {
     suspend fun getTripPackageList(): List<MainEntity>;
 
     @POST("/trip-packages/{tripPackageID}")
-    fun getTripPackageDetails(@Path("tripPackageID") id: String): Call<EntityDetails>;
+    suspend fun getTripPackageDetails(@Path("tripPackageID") id: String): EntityDetails
 
 }

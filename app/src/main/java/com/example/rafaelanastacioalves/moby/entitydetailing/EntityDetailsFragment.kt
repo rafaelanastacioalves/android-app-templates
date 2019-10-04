@@ -39,21 +39,15 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        subscribe()
         loadData()
     }
 
     private fun loadData() {
         val mPackageId = arguments!!.getString(ARG_PACKAGE_ID)
-        mLiveDataEntityDetailsViewModel.loadData(mPackageId)
-    }
-
-    private fun subscribe() {
         mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this).get(LiveDataEntityDetailsViewModel::class.java)
-        mLiveDataEntityDetailsViewModel.entityDetails.observe(this, Observer { entityDetails -> setViewsWith(entityDetails!!) })
+        mLiveDataEntityDetailsViewModel.loadData(mPackageId).observe(this, Observer { entityDetails -> setViewsWith(entityDetails?.data) })
 
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -79,12 +73,12 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setViewsWith(entityDetails: EntityDetails) {
+    private fun setViewsWith(entityDetails: EntityDetails?) {
 
-        tripPackageDetailValor!!.text = entityDetails.price
-        setupActionBarWithTitle(entityDetails.title)
+        tripPackageDetailValor!!.text = entityDetails?.price
+        setupActionBarWithTitle(entityDetails?.title?: "" )
         Picasso.get()
-                .load(entityDetails.image_url)
+                .load(entityDetails?.image_url)
                 .into(tripPackageDetailImageview, object : Callback {
                     override fun onSuccess() {
                         activity!!.supportStartPostponedEnterTransition()
