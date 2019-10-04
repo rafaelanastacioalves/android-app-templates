@@ -2,9 +2,9 @@ package com.example.rafaelanastacioalves.moby.domain.interactors
 
 import android.arch.lifecycle.LiveData
 
-interface Interactor<R : Interactor_temp.RequestValues> {
+interface Interactor<out T ,in R : Interactor.RequestValues> {
 
-    fun <T : LiveData<*>> execute(requestValue: R): T
+    fun execute(requestValue: R?): T
 
     interface RequestValues
 }

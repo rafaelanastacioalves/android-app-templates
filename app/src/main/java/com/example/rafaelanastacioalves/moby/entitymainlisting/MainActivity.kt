@@ -19,6 +19,7 @@ import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragme
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity
 import com.example.rafaelanastacioalves.moby.R
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
+import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 
 import timber.log.Timber
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
 
     private fun subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel::class.java)
-        mLiveDataMainEntityListViewModel.mainEntityList.observe(this, Observer { mainEntities ->
+        mLiveDataMainEntityListViewModel.loadData().observe(this, Observer { mainEntities ->
             Timber.d("On Changed")
             populateRecyclerView(mainEntities)
         })
@@ -69,14 +70,14 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
     }
 
 
-    private fun populateRecyclerView(list: List<MainEntity>?) {
+    private fun populateRecyclerView(list: Resource<List<MainEntity>>?) {
         if (list == null) {
             mTripPackageListAdapter!!.setItems(null)
             //TODO add any error managing
             Timber.w("Nothing returned from Trip Package List API")
 
-        } else {
-            mTripPackageListAdapter!!.setItems(list)
+        } else if (list.data!=null) {
+            mTripPackageListAdapter!!.setItems(list.data)
         }
 
     }

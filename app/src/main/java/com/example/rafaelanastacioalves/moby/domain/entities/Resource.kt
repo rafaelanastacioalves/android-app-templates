@@ -3,7 +3,7 @@ package com.example.rafaelanastacioalves.moby.domain.entities
 class Resource<T> constructor(
         status: Status,
         val data: T?,
-        message: String?) {
+        var message: String?) {
 
     companion object Factory {
 
