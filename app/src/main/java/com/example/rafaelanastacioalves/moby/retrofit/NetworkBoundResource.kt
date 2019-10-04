@@ -27,24 +27,26 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
             try {
                 resultData = makeCall()
 
-                result.value = Resource(Resource.Status.SUCCESS, resultData, null)
+                result.postValue(Resource(Resource.Status.SUCCESS, resultData, null))
 
             } catch (exception: Exception) {
                 if (exception is HttpException) {
                     when (exception.code()) {
                         HttpURLConnection.HTTP_INTERNAL_ERROR -> {
-                            result.value = Resource.error(
+                            result.postValue(Resource.error(
                                     Resource.Status.INTERNAL_SERVER_ERROR
                                     , null
                                     , null)
+                            )
                         }
 
                         else -> {
-                            result.value = Resource.error(
+                            result.postValue(Resource.error(
                                     Resource.Status.GENERIC_ERROR,
                                     null,
                                     null
                                     )
+                            )
                         }
 
                     }
