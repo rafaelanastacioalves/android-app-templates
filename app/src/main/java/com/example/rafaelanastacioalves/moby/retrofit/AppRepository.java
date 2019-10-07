@@ -10,18 +10,14 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
-import io.reactivex.Single;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 @Singleton
 public class AppRepository {
 
     public LiveData<Resource<List<MainEntity>>> getMainEntityList() {
-        APIClient apiClient = ServiceGenerator.createService(APIClient.class);
-        return new NetworkBoundSource<List<MainEntity>, List<MainEntity>>() {
+        final APIClient apiClient = ServiceGenerator.createService(APIClient.class);
+        return new NetworkBoundResource<List<MainEntity>, List<MainEntity>>() {
             @Override
             protected void onFetchFailed() {
 
@@ -34,9 +30,9 @@ public class AppRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<EntityDetails>> getEntityDetails(String id) {
-        APIClient apiClient = ServiceGenerator.createService(APIClient.class);
-        return new NetworkBoundSource<EntityDetails, EntityDetails>() {
+    public LiveData<Resource<EntityDetails>> getEntityDetails(final String id) {
+        final APIClient apiClient = ServiceGenerator.createService(APIClient.class);
+        return new NetworkBoundResource<EntityDetails, EntityDetails>() {
             @Override
             protected void onFetchFailed() {
 

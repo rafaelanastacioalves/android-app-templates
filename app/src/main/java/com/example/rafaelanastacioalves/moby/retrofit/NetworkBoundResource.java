@@ -18,13 +18,13 @@ import timber.log.Timber;
  * No, caso, como não temos DB, ignoramos o RequestType e consideramos o ResultType
  * direto.
  */
-public abstract class NetworkBoundSource<ResultType, RequestType> {
+public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     public static final String ERRO_DE_NETWORK = "Erro de Network";
     private static final String ERRO_DE_API = "Erro de API";
     private MutableLiveData<Resource<ResultType>> result = new MutableLiveData<>();
 
-    public NetworkBoundSource(){
+    public NetworkBoundResource(){
         result.setValue((Resource<ResultType>) Resource.loading(null));
         fetchFromNetwork();
     }
