@@ -25,7 +25,7 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
     private MutableLiveData<Resource<ResultType>> result = new MutableLiveData<>();
 
     public NetworkBoundSource(){
-        result.setValue(Resource.loading(null));
+        result.setValue((Resource<ResultType>) Resource.loading(null));
         fetchFromNetwork();
     }
 
