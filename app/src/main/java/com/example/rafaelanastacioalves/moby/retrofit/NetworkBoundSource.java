@@ -40,7 +40,7 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
                         setValue(Resource.success(response.body()));
                     }else {
                         Timber.w("API response: NOT Successful");
-                        setValue(Resource.error(Resource.Status.GENERIC_ERROR,null, null));
+                        setValue((Resource<ResultType>) Resource.error(Resource.Status.GENERIC_ERROR,null, null));
                     }
 
                 }
@@ -57,10 +57,10 @@ public abstract class NetworkBoundSource<ResultType, RequestType> {
                     HttpException httpException = (HttpException) t;
 
                     if (httpException.code() == HttpsURLConnection.HTTP_INTERNAL_ERROR){
-                        setValue(Resource.error(Resource.Status.INTERNAL_SERVER_ERROR, null, null));
+                        setValue((Resource<ResultType>) Resource.error(Resource.Status.INTERNAL_SERVER_ERROR, null, null));
                     }
                 }else{
-                    setValue(Resource.error(Resource.Status.GENERIC_ERROR,null, null));
+                    setValue((Resource<ResultType>) Resource.error(Resource.Status.GENERIC_ERROR,null, null));
                 }
             }
         });
