@@ -69,10 +69,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitExt"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3Ext"
 
-    implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibrariesExt"
-    implementation "com.android.support:recyclerview-v7:$rootProject.androidSupportLibrariesExt"
-    implementation "com.android.support:design:$rootProject.androidSupportLibrariesExt"
-
     implementation "com.android.support.constraint:constraint-layout:$rootProject.androidConstraintLayout"
     implementation "com.jakewharton:butterknife:$rootProject.jakewhartonStuff"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoExt"
@@ -87,6 +83,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.+"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.+"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01"
 
 
 //    implementation "androidx.appcompat:appcompat:$android_ktx_version"

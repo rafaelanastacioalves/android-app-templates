@@ -1,8 +1,8 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -12,7 +12,9 @@ import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 
 
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment
@@ -24,7 +26,9 @@ import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
+class MainActivity : AppCompatActivity(), RecyclerViewClickListener{
+
+
     private val mClickListener = this
     private var mTripPackageListAdapter: MainEntityAdapter? = null
     private val tripPackageListLoaderId = 10
@@ -36,17 +40,13 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
         setupViews()
         setupRecyclerView()
         subscribe()
-        loadData()
 
     }
 
-    private fun loadData() {
-        mLiveDataMainEntityListViewModel.loadData()
-    }
 
     private fun subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel::class.java)
-        mLiveDataMainEntityListViewModel.loadData().observe(this, Observer { mainEntities ->
+        mLiveDataMainEntityListViewModel.loadData().observeForever(Observer { mainEntities ->
             Timber.d("On Changed")
             populateRecyclerView(mainEntities)
         })

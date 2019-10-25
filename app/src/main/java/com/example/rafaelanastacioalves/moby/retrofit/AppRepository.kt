@@ -7,7 +7,7 @@ import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 
 object AppRepository {
 
-    fun mainEntity(): LiveData<Resource<List<MainEntity>>> {
+    suspend fun mainEntity(): Resource<List<MainEntity>> {
         return object : NetworkBoundResource<List<MainEntity>, List<MainEntity>>() {
             override suspend fun makeCall(): List<MainEntity>? {
 
@@ -15,7 +15,7 @@ object AppRepository {
                 return apiClient.getTripPackageList()
             }
 
-        }.asLiveData()
+        }.fromHttpOnly()
     }
 
     fun entityDetails(requestId: String) : LiveData<Resource<EntityDetails>> {

@@ -1,8 +1,8 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor
@@ -13,18 +13,19 @@ import timber.log.Timber
 
 class LiveDataMainEntityListViewModel : ViewModel() {
 
-    val mainEntityList = MutableLiveData<List<MainEntity>>()
+    lateinit var mainEntityList: LiveData<Resource<List<MainEntity>>>
 
     val mainEntityListInteractor: MainEntityListInteractor = MainEntityListInteractor()
 
-    val viewModelScope = CoroutineScope(Dispatchers.Main);
+    val viewModelScope = CoroutineScope(Dispatchers.Default);
+
+
 
     fun loadData() : LiveData<Resource<List<MainEntity>>> {
+        mainEntityList = mainEntityListInteractor.execute(null)
 
-        Timber.i("LiveDataMainEntityListViewModel loadData");
 
-        return mainEntityListInteractor.execute(null)
-
+        return mainEntityList
 
     }
 

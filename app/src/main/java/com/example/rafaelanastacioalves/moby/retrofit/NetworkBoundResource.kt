@@ -11,12 +11,10 @@ import java.net.HttpURLConnection
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
 
-    val result: MutableLiveData<Resource<ResultType>> = MutableLiveData()
     val viewModelScope = CoroutineScope(Dispatchers.IO);
-
+    lateinit var result: Resource<ResultType>
 
     init {
-        result.value = Resource.loading()
         fetchFromNetwork()
     }
 
@@ -27,25 +25,23 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
             try {
                 resultData = makeCall()
 
-                result.postValue(Resource(Resource.Status.SUCCESS, resultData, null))
+                result = Resource(Resource.Status.SUCCESS, resultData, null)
 
             } catch (exception: Exception) {
                 if (exception is HttpException) {
                     when (exception.code()) {
                         HttpURLConnection.HTTP_INTERNAL_ERROR -> {
-                            result.postValue(Resource.error(
+                            result = Resource.error(
                                     Resource.Status.INTERNAL_SERVER_ERROR
                                     , null
                                     , null)
-                            )
                         }
 
                         else -> {
-                            result.postValue(Resource.error(
+                            result = Resource.error(
                                     Resource.Status.GENERIC_ERROR,
                                     null,
                                     null
-                                    )
                             )
                         }
 
@@ -57,9 +53,13 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     abstract suspend fun makeCall(): ResultType?
 
-    fun asLiveData(): LiveData<Resource<ResultType>> {
+    suspend fun fromHttpOnly(): Resource<ResultType> {
+        makeCall()
+        return result
+    }
 
-        return result;
+    fun asLiveData(): LiveData<Resource<RequestType>> {
+        return MutableLiveData()
     }
 
 }
