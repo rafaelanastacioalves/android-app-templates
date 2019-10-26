@@ -3,9 +3,7 @@ package com.example.rafaelanastacioalves.moby.retrofit
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 
@@ -14,14 +12,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
     val viewModelScope = CoroutineScope(Dispatchers.IO);
     lateinit var result: Resource<ResultType>
 
-    init {
-        fetchFromNetwork()
-    }
-
-    fun fetchFromNetwork() {
+    suspend fun fetchFromNetwork() {
 
         var resultData: ResultType?
-        viewModelScope.launch {
             try {
                 resultData = makeCall()
 
@@ -46,15 +39,20 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                         }
 
                     }
+                }else{
+                    result = Resource.error(Resource.Status.GENERIC_ERROR,
+                            null,
+                            null)
                 }
             }
-        }
+
     }
 
     abstract suspend fun makeCall(): ResultType?
 
     suspend fun fromHttpOnly(): Resource<ResultType> {
-        makeCall()
+        fetchFromNetwork()
+
         return result
     }
 

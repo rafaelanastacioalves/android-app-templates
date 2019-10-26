@@ -18,6 +18,17 @@ object AppRepository {
         }.fromHttpOnly()
     }
 
+    suspend fun mainEntityAdditional(): Resource<List<MainEntity>> {
+        return object : NetworkBoundResource<List<MainEntity>, List<MainEntity>>() {
+            override suspend fun makeCall(): List<MainEntity>? {
+
+                var apiClient: APIClient = ServiceGenerator.createService(APIClient::class.java);
+                return apiClient.getTripPackageListAdditional()
+            }
+
+        }.fromHttpOnly()
+    }
+
     fun entityDetails(requestId: String) : LiveData<Resource<EntityDetails>> {
         return object : NetworkBoundResource<EntityDetails, EntityDetails>(){
             override suspend fun makeCall(): EntityDetails? {
