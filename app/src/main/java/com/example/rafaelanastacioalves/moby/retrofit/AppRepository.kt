@@ -29,12 +29,12 @@ object AppRepository {
         }.fromHttpOnly()
     }
 
-    fun entityDetails(requestId: String) : LiveData<Resource<EntityDetails>> {
+    suspend fun entityDetails(requestId: String) : Resource<EntityDetails> {
         return object : NetworkBoundResource<EntityDetails, EntityDetails>(){
             override suspend fun makeCall(): EntityDetails? {
                 var apiClient: APIClient = ServiceGenerator.createService(APIClient::class.java)
                 return apiClient.getTripPackageDetails(requestId)
             }
-        }.asLiveData()
+        }.fromHttpOnly()
     }
 }

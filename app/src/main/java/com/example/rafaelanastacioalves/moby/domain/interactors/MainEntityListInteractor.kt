@@ -1,15 +1,14 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
-
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 
 class MainEntityListInteractor :
-        Interactor<LiveData<Resource<List<MainEntity>>>, MainEntityListInteractor.RequestValues> {
+        Interactor<Resource<List<MainEntity>>, MainEntityListInteractor.RequestValues>() {
 
     val appRepository: AppRepository
 
@@ -18,32 +17,26 @@ class MainEntityListInteractor :
         appRepository = AppRepository
     }
 
-    override fun execute(requestValues: RequestValues?): LiveData<Resource<List<MainEntity>>> {
+    override suspend fun run(requestValues: RequestValues?): Resource<List<MainEntity>> {
+        var finalList: List<MainEntity> = ArrayList<MainEntity>()
 
-        val liveData: LiveData<Resource<List<MainEntity>>> = liveData {
-            withContext(Dispatchers.IO) {
-                emit(Resource.loading())
+        withContext(Dispatchers.IO) {
 
-                // in this examaple we could call sequentially or wait for one result so we get some data to make another call, just saying...
-                val deferredOne = async {appRepository.mainEntity()}
-                val deferredTwo = async { appRepository.mainEntityAdditional() }
+            // in this examaple we could call sequentially or wait for one result so we get some data to make another call, just saying...
+            val deferredOne = async { appRepository.mainEntity() }
+            val deferredTwo = async { appRepository.mainEntityAdditional() }
 
-                var resultOne : List<MainEntity>?  = deferredOne.await().data
-                var resultTwo : List<MainEntity>?  = deferredTwo.await().data
+            var resultOne: List<MainEntity>? = deferredOne.await().data
+            var resultTwo: List<MainEntity>? = deferredTwo.await().data
 
-                var finalList: List<MainEntity> = ArrayList<MainEntity>()
-                resultOne?.let { finalList = finalList.union(resultOne).toList() }
-                resultTwo?.let { finalList = finalList.union(resultTwo).toList()}
-
-                val result = Resource.success(finalList)
-                emit(result)
-            }
+            resultOne?.let { finalList = finalList.union(resultOne).toList() }
+            resultTwo?.let { finalList = finalList.union(resultTwo).toList() }
 
         }
-        return liveData
 
+        val result = Resource.success(finalList)
 
-
+        return result
 
 
     }
