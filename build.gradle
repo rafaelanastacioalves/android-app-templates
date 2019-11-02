@@ -29,12 +29,12 @@ allprojects {
 }
 
 ext {
-    compileSdkVersionExt = 26
-    buildToolsVersionExt = "27.0.3"
+    compileSdkVersionExt = 28
+    buildToolsVersionExt = "28.0.3"
     minSdkVersionExt = 15
-    targetSdkVersionExt = 26
+    targetSdkVersionExt = 28
     crashlytics = "2.7.1@aar"
-    androidSupportLibrariesExt = "27.1.0"
+    androidSupportLibrariesExt = "28.+"
     firebaseUiExt = "3.1.0"
     firebaseExt = "11.4.2"
     facebookAndroidExt = "4.27.0"

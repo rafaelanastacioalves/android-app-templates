@@ -1,6 +1,5 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors
 
-import android.arch.lifecycle.LiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

@@ -1,8 +1,8 @@
 package com.example.rafaelanastacioalves.moby.application
 
 import android.app.Application
-import android.support.v7.app.AppCompatDelegate
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 
 import com.example.rafaelanastacioalves.moby.BuildConfig
 import com.squareup.picasso.Picasso

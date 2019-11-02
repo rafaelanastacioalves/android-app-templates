@@ -1,19 +1,17 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import android.content.Context;
-import android.graphics.drawable.StateListDrawable;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.example.rafaelanastacioalves.moby.R;
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
-import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener;
-import com.squareup.picasso.Picasso;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import android.content.Context
+import android.graphics.drawable.StateListDrawable
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import butterknife.BindView
+import butterknife.ButterKnife
+import com.example.rafaelanastacioalves.moby.R
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
+import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
+import com.squareup.picasso.Picasso
 
 class MainEntityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 

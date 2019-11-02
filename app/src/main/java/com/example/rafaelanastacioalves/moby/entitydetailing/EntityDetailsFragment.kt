@@ -1,25 +1,23 @@
 package com.example.rafaelanastacioalves.moby.entitydetailing
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.example.rafaelanastacioalves.moby.R
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-
-import butterknife.BindView
-import butterknife.ButterKnife
 
 
 /**
@@ -44,7 +42,7 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
 
     private fun loadData() {
         val mPackageId = arguments!!.getString(ARG_PACKAGE_ID)
-        mLiveDataEntityDetailsViewModel = ViewModelProviders.of(this).get(LiveDataEntityDetailsViewModel::class.java)
+        mLiveDataEntityDetailsViewModel = ViewModelProvider.NewInstanceFactory().create(LiveDataEntityDetailsViewModel::class.java)
         mLiveDataEntityDetailsViewModel.loadData(mPackageId).observe(this, Observer { entityDetails -> setViewsWith(entityDetails?.data) })
 
     }

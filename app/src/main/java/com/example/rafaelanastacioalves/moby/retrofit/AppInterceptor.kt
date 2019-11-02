@@ -1,11 +1,10 @@
 package com.example.rafaelanastacioalves.moby.retrofit;
 
 
-import okhttp3.Interceptor;
+import okhttp3.Interceptor
 import okhttp3.Interceptor.Chain
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.Request
+import okhttp3.Response
 
 class AppInterceptor : Interceptor {
 

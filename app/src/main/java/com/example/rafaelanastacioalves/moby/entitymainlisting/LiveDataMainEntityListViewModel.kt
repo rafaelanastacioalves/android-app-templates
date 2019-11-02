@@ -1,10 +1,8 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor
@@ -28,8 +26,7 @@ class LiveDataMainEntityListViewModel : ViewModel() {
     }
 
     private fun handle(it: Resource<List<MainEntity>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mainEntityList.postValue(it)
     }
-
 
 }

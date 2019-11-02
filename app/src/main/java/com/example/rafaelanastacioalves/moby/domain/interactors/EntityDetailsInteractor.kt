@@ -1,10 +1,8 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource.Factory.error
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository
 
 class EntityDetailsInteractor :

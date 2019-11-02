@@ -1,15 +1,12 @@
 package com.example.rafaelanastacioalves.moby.entitymainlisting;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
-import com.example.rafaelanastacioalves.moby.R;
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
-import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener;
-
-import kotlin.collections.ArrayList
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.rafaelanastacioalves.moby.R
+import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
+import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
 
 class MainEntityAdapter(context: Context) : RecyclerView.Adapter<MainEntityViewHolder>() {
     lateinit private var recyclerViewClickListener: RecyclerViewClickListener

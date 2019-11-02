@@ -1,9 +1,10 @@
 package com.example.rafaelanastacioalves.moby.retrofit
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.rafaelanastacioalves.moby.domain.entities.Resource
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 
