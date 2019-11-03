@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.compileSdkVersionExt
@@ -70,10 +70,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3Ext"
 
     implementation "com.android.support.constraint:constraint-layout:$rootProject.androidConstraintLayout"
-    implementation "com.jakewharton:butterknife:$rootProject.jakewhartonStuff"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoExt"
     implementation "com.jakewharton.timber:timber:$rootProject.timberExt"
-    kapt "com.jakewharton:butterknife-compiler:$rootProject.jakewhartonStuff"
 
     // architecture components
 

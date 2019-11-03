@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.rafaelanastacioalves.moby.R
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
 import com.squareup.picasso.Callback
@@ -28,11 +26,9 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
 
     lateinit private var mLiveDataEntityDetailsViewModel: LiveDataEntityDetailsViewModel
 
-    @BindView(R.id.detail_entity_detail_name)
-    lateinit internal var tripPackageDetailValor: TextView
+    lateinit internal var detail_entity_detail_name: TextView
 
-    @BindView(R.id.trip_package_detail_imageview)
-    lateinit internal var tripPackageDetailImageview: ImageView
+    lateinit internal var trip_package_detail_imageview: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +51,6 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
 
     private fun inflateViews(inflater: LayoutInflater, container: ViewGroup?): View {
         val rootView = inflater.inflate(R.layout.fragment_detail_entity_detail_view, container, false)
-        ButterKnife.bind(this, rootView)
         return rootView
     }
 
@@ -73,11 +68,11 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
 
     private fun setViewsWith(entityDetails: EntityDetails?) {
 
-        tripPackageDetailValor!!.text = entityDetails?.price
+        detail_entity_detail_name!!.text = entityDetails?.price
         setupActionBarWithTitle(entityDetails?.title?: "" )
         Picasso.get()
                 .load(entityDetails?.image_url)
-                .into(tripPackageDetailImageview, object : Callback {
+                .into(trip_package_detail_imageview, object : Callback {
                     override fun onSuccess() {
                         activity!!.supportStartPostponedEnterTransition()
                     }
