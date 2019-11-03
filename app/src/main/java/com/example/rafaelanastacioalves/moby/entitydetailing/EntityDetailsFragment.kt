@@ -16,6 +16,7 @@ import com.example.rafaelanastacioalves.moby.R
 import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_detail_entity_detail_view.*
 
 
 /**
@@ -26,9 +27,7 @@ class EntityDetailsFragment : Fragment(), View.OnClickListener {
 
     lateinit private var mLiveDataEntityDetailsViewModel: LiveDataEntityDetailsViewModel
 
-    lateinit internal var detail_entity_detail_name: TextView
 
-    lateinit internal var trip_package_detail_imageview: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
