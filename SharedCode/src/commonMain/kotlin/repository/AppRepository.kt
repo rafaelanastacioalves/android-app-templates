@@ -1,8 +1,11 @@
 package com.example.rafaelanastacioalves.moby.retrofit
 
-import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource
+import domain.ServiceLocator
+import domain.domain.entities.EntityDetails
+import domain.domain.entities.MainEntity
+import domain.domain.entities.Resource
+import repository.APIClient
+
 
 object AppRepository {
 
@@ -10,7 +13,7 @@ object AppRepository {
         return object : NetworkBoundResource<List<MainEntity>, List<MainEntity>>() {
             override suspend fun makeCall(): List<MainEntity>? {
 
-                var apiClient: APIClient = ServiceGenerator.createService(APIClient::class.java);
+                var apiClient: APIClient = ServiceLocator.moviesApi
                 return apiClient.getTripPackageList()
             }
 
@@ -21,7 +24,7 @@ object AppRepository {
         return object : NetworkBoundResource<List<MainEntity>, List<MainEntity>>() {
             override suspend fun makeCall(): List<MainEntity>? {
 
-                var apiClient: APIClient = ServiceGenerator.createService(APIClient::class.java);
+                var apiClient: APIClient = ServiceLocator.moviesApi
                 return apiClient.getTripPackageListAdditional()
             }
 
@@ -31,7 +34,7 @@ object AppRepository {
     suspend fun entityDetails(requestId: String) : Resource<EntityDetails> {
         return object : NetworkBoundResource<EntityDetails, EntityDetails>(){
             override suspend fun makeCall(): EntityDetails? {
-                var apiClient: APIClient = ServiceGenerator.createService(APIClient::class.java)
+                var apiClient: APIClient = ServiceLocator.moviesApi
                 return apiClient.getTripPackageDetails(requestId)
             }
         }.fromHttpOnly()

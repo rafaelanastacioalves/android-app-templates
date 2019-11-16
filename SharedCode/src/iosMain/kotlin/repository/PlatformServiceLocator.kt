@@ -1,19 +1,13 @@
 package domain
 
-import kotlin.native.concurrent.ThreadLocal
 import io.ktor.client.engine.HttpClientEngine
-
-
-@ThreadLocal
-object SeviceLocator {
-
-
-}
+import io.ktor.client.engine.ios.Ios
 
 /**
  * Contains some expected dependencies for the [ServiceLocator] that have to be resolved by Android/iOS.
  */
-expect object PlatformServiceLocator {
+@ThreadLocal
+actual object PlatformServiceLocator {
 
-    val httpClientEngine: HttpClientEngine
+    actual val httpClientEngine: HttpClientEngine by lazy { Ios.create() }
 }

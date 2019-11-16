@@ -1,8 +1,10 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors
 
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource
+
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository
+import domain.domain.entities.MainEntity
+import domain.domain.entities.Resource
+import domain.domain.uiDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
@@ -20,7 +22,7 @@ class MainEntityListInteractor :
     override suspend fun run(requestValues: RequestValues?): Resource<List<MainEntity>> {
         var finalList: List<MainEntity> = ArrayList<MainEntity>()
 
-        withContext(Dispatchers.IO) {
+        withContext(uiDispatcher) {
 
             // in this examaple we could call sequentially or wait for one result so we get some data to make another call, just saying...
             val deferredOne = async { appRepository.mainEntity() }

@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rafaelanastacioalves.moby.R
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
+import domain.domain.entities.MainEntity
 
 class MainEntityAdapter(context: Context) : RecyclerView.Adapter<MainEntityViewHolder>() {
     lateinit private var recyclerViewClickListener: RecyclerViewClickListener

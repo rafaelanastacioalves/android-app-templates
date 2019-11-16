@@ -3,9 +3,10 @@ package com.example.rafaelanastacioalves.moby.entitymainlisting;
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.domain.interactors.MainEntityListInteractor
+import domain.domain.entities.MainEntity
+import domain.domain.entities.Resource
+import kotlinx.coroutines.launch
 
 
 class LiveDataMainEntityListViewModel : ViewModel() {
@@ -17,9 +18,10 @@ class LiveDataMainEntityListViewModel : ViewModel() {
 
 
     fun loadData() : MutableLiveData<Resource<List<MainEntity>>> {
-        mainEntityListInteractor.execute(viewModelScope,null, {
-            handle(it)
-        })
+            mainEntityListInteractor.invoke(null, {
+                handle(it)
+            })
+
 
         return mainEntityList
 

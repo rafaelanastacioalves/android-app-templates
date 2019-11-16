@@ -1,9 +1,10 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors
 
 
-import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource
+
 import com.example.rafaelanastacioalves.moby.retrofit.AppRepository
+import domain.domain.entities.EntityDetails
+import domain.domain.entities.Resource
 
 class EntityDetailsInteractor :
         Interactor<Resource<EntityDetails>?, EntityDetailsInteractor.RequestValues>() {

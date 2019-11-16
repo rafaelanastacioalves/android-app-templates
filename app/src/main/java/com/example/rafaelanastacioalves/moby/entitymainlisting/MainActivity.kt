@@ -14,11 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rafaelanastacioalves.moby.R
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailActivity
 import com.example.rafaelanastacioalves.moby.entitydetailing.EntityDetailsFragment
 import com.example.rafaelanastacioalves.moby.listeners.RecyclerViewClickListener
+import domain.domain.entities.MainEntity
+import domain.domain.entities.Resource
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), RecyclerViewClickListener{
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener{
 
     private fun startActivityByVersion(mainEntity: MainEntity, transitionImageView: AppCompatImageView) {
         val i = Intent(this, EntityDetailActivity::class.java)
-        i.putExtra(EntityDetailsFragment.ARG_PACKAGE_ID, mainEntity.getId())
+        i.putExtra(EntityDetailsFragment.ARG_PACKAGE_ID, mainEntity.id)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             var bundle: Bundle? = null

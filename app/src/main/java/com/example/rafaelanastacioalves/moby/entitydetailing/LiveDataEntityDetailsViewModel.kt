@@ -3,10 +3,9 @@ package com.example.rafaelanastacioalves.moby.entitydetailing
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails
-import com.example.rafaelanastacioalves.moby.domain.entities.Resource
 import com.example.rafaelanastacioalves.moby.domain.interactors.EntityDetailsInteractor
+import domain.domain.entities.EntityDetails
+import domain.domain.entities.Resource
 import timber.log.Timber
 
 
@@ -20,8 +19,7 @@ internal class LiveDataEntityDetailsViewModel : ViewModel() {
         Timber.i("LiveDataEntityDetailsViewModel loadData")
 
         entityDetails.postValue(Resource.loading())
-        entityDetailsInteractor.execute(viewModelScope,
-                tripPackageId?.let{EntityDetailsInteractor.RequestValues(it)},{it -> handle(it)})
+        entityDetailsInteractor.invoke(tripPackageId?.let{EntityDetailsInteractor.RequestValues(it)},{it -> handle(it)})
         return entityDetails
     }
 

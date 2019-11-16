@@ -58,7 +58,7 @@ kotlin {
         implementation ("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:0.11.0")
 
         // HTTP
-        implementation ("io.ktor:ktor-client-ios:1.2.0-rc")
+        implementation ("io.ktor:ktor-client-ios:1.2.5")
         implementation ("io.ktor:ktor-client-json-native:1.2.0-rc")
         implementation ("io.ktor:ktor-client-serialization-iosx64:1.2.0-rc")
 
