@@ -38,6 +38,9 @@ kotlin {
         implementation ("io.ktor:ktor-client-json:1.2.0-rc")
         implementation ("io.ktor:ktor-client-serialization:1.2.0-rc")
 
+        // Coroutines
+        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.2.1")
+
     }
 
     sourceSets["androidMain"].dependencies {
@@ -58,6 +61,10 @@ kotlin {
         implementation ("io.ktor:ktor-client-ios:1.2.0-rc")
         implementation ("io.ktor:ktor-client-json-native:1.2.0-rc")
         implementation ("io.ktor:ktor-client-serialization-iosx64:1.2.0-rc")
+
+
+        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.2")
+
     }
 }
 

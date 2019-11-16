@@ -1,20 +1,24 @@
 package com.example.rafaelanastacioalves.moby.domain.interactors
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import domain.domain.uiDispatcher
+import kotlinx.coroutines.*
 
 abstract class Interactor<out T ,in R : Interactor.RequestValues> {
 
     abstract suspend fun run(requestValue: R?): T
 
-    open fun execute(
-            scope: CoroutineScope,
+
+    suspend operator fun invoke(
             params: R?,
             onResult: (T) -> Unit = {}
     ){
-        val backGroundJob = scope.async { run(params) }
-        scope.launch { onResult(backGroundJob.await()) }
+        coroutineScope {
+            val backGroundJob = async { run(params) }
+            launch (uiDispatcher) {
+                onResult(backGroundJob.await())
+            }
+
+        }
     }
 
     interface RequestValues
