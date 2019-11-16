@@ -1,4 +1,0 @@
-/Users/rafaelanastacioalves/Documents/Desenvolvimento_Android/android-app-templates/SharedCode/src/androidMain/Kotlin/PlatformServiceLocator.kt
-/Users/rafaelanastacioalves/Documents/Desenvolvimento_Android/android-app-templates/SharedCode/src/commonMain/kotlin/repository/APIClient.kt
-/Users/rafaelanastacioalves/Documents/Desenvolvimento_Android/android-app-templates/SharedCode/src/commonMain/kotlin/domain/entities/MainEntity.kt
-/Users/rafaelanastacioalves/Documents/Desenvolvimento_Android/android-app-templates/SharedCode/src/commonMain/kotlin/SeviceLocator.kt
