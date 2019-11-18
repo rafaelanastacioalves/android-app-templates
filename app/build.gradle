@@ -17,6 +17,11 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     testBuildType "instrumentation"
     buildTypes {
 
@@ -26,6 +31,7 @@ android {
 
         }
         debug {
+            multiDexEnabled true
         }
         release {
             minifyEnabled false
@@ -41,7 +47,19 @@ android {
 
         packagingOptions {
             exclude 'META-INF/proguard/coroutines.pro'
+            exclude 'META-INF/ktor-client-serialization.kotlin_module'
+            exclude 'META-INF/ktor-http.kotlin_module'
+            exclude 'META-INF/kotlinx-io.kotlin_module'
+            exclude 'META-INF/atomicfu.kotlin_module'
+            exclude 'META-INF/ktor-utils.kotlin_module'
+            exclude 'META-INF/kotlinx-coroutines-io'
+            exclude 'META-INF/kotlinx-coroutines-io.kotlin_module'
+            exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
+            exclude 'META-INF/ktor-http-cio.kotlin_module'
+            exclude 'META-INF/ktor-client-json.kotlin_module'
+            exclude 'META-INF/ktor-client-core.kotlin_module'
         }
+
     }
 }
 
@@ -75,10 +93,7 @@ dependencies {
 
     // architecture components
 
-    implementation 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
-    annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 
 
     // alternatively - just ViewModel
@@ -90,7 +105,6 @@ dependencies {
 
 
     implementation project(':SharedCode')
-
 
 
 }
