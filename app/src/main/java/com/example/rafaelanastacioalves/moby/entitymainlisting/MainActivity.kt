@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener{
     private fun subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProvider.NewInstanceFactory().create(LiveDataMainEntityListViewModel::class.java)
         mLiveDataMainEntityListViewModel.loadData().observeForever(Observer { mainEntities ->
-            Timber.d("On Changed")
+            Timber.d("On Changed: " + mainEntities.message)
             populateRecyclerView(mainEntities)
         })
     }

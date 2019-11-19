@@ -36,6 +36,7 @@ class APIClient(clientEngine: HttpClientEngine) {
                 protocol = URLProtocol.HTTP
                 host = BASE_URL
                 encodedPath = "/trip-packages"
+                body = ""
             }
         }
 
@@ -51,7 +52,8 @@ class APIClient(clientEngine: HttpClientEngine) {
             url {
                 protocol = URLProtocol.HTTP
                 host = BASE_URL
-                encodedPath = "/trip-packages"
+                encodedPath = "/trip-packages-additional"
+                body = ""
             }
         }
 

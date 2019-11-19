@@ -41,7 +41,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 //                }else{
             result = Resource.error(Resource.Status.GENERIC_ERROR,
                     null,
-                    null)
+                    exception.message)
 //                }
 //            }
 
