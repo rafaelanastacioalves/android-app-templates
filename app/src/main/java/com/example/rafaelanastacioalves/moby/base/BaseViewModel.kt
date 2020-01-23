@@ -1,4 +1,13 @@
-abstract class BaseViewModel:ViewModel(){
+package com.example.rafaelanastacioalves.moby.base
+
+import android.arch.lifecycle.ViewModel
+import com.example.rafaelanastacioalves.moby.entitydetailing.LiveDataEntityDetailsViewModel
+import com.example.rafaelanastacioalves.moby.entitymainlisting.LiveDataMainEntityListViewModel
+import com.example.rafaelanastacioalves.moby.injection.component.DaggerViewModelInjector
+import com.example.rafaelanastacioalves.moby.injection.component.ViewModelInjector
+import com.example.rafaelanastacioalves.moby.injection.module.NetworkModule
+
+abstract class BaseViewModel: ViewModel(){
     private val injector: ViewModelInjector = DaggerViewModelInjector
             .builder()
             .networkModule(NetworkModule)
@@ -13,8 +22,8 @@ abstract class BaseViewModel:ViewModel(){
      */
     private fun inject() {
         when (this) {
-            is PostListViewModel -> injector.inject(this)
-            is PostViewModel -> injector.inject(this)
+            is LiveDataEntityDetailsViewModel -> injector.inject(this)
+            is LiveDataMainEntityListViewModel -> injector.inject(this)
         }
     }
 }

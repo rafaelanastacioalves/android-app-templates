@@ -32,13 +32,10 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
         setupViews()
         setupRecyclerView()
         subscribe()
-        loadData()
 
     }
 
-    private fun loadData() {
-        mLiveDataMainEntityListViewModel.loadData()
-    }
+
 
     private fun subscribe() {
         mLiveDataMainEntityListViewModel = ViewModelProviders.of(this).get(LiveDataMainEntityListViewModel::class.java!!)
