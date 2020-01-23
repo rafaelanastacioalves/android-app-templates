@@ -14,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
-internal class LiveDataEntityDetailsViewModel : ViewModel() {
+internal class LiveDataEntityDetailsViewModel : BaseViewModel() {
 
     val entityDetails = MutableLiveData<EntityDetails>()
 
