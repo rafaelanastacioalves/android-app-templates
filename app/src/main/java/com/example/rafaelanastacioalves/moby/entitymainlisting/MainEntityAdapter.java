@@ -33,9 +33,11 @@ public class MainEntityAdapter extends RecyclerView.Adapter<MainEntityViewHolder
 
     public void setItems(List<MainEntity> items) {
         this.items = items;
+        updateList();
+    }
+
+    protected void updateList() {
         notifyDataSetChanged();
-
-
     }
 
     @Override

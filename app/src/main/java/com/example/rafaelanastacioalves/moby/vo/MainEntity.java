@@ -13,6 +13,14 @@ public class MainEntity {
         super();
     }
 
+    public MainEntity(String title) {
+        id = "123";
+        title = title;
+        price = "R$10,00";
+        price_currency = "R$10,00";
+        image_url = "http://xxx.com";
+    }
+
     public String getId() {
         return id;
     }
