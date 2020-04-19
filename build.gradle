@@ -45,6 +45,9 @@ ext {
     archLifecycleVersion = "1.1.1"
     rxAndroidVersion = "2.0.1"
     rxJavaVersion = "2.x.x"
+    junitVersion = "4.12"
+    hamcrestVersion = "1.3"
+    mockitoVersion = "2.15.0"
 
 
 }
