@@ -9,16 +9,20 @@ public class MainEntity {
     private String price_currency;
     private String image_url;
 
+    protected static final String defaultId = "123";
+    protected static final String defaultPrice = "R$10,00";
+    protected static final String defaultUrlDeclaration = "http://xxx.com";
+
     public MainEntity(){
         super();
     }
 
     public MainEntity(String title) {
-        id = "123";
-        title = title;
-        price = "R$10,00";
-        price_currency = "R$10,00";
-        image_url = "http://xxx.com";
+        id = defaultId;
+        this.title = title;
+        price = defaultPrice;
+        price_currency = defaultPrice;
+        image_url = defaultUrlDeclaration;
     }
 
     public String getId() {
