@@ -51,7 +51,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void shouldShowTripPackageSuccess() throws IOException {
+    public void should_ShowTripPackageSuccess_WhenAPIIsSuccess() throws IOException {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(RestServiceTestHelper.getStringFromFile(
