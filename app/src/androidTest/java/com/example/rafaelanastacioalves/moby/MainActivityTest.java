@@ -9,6 +9,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.example.rafaelanastacioalves.moby.entitymainlisting.MainActivity;
 import com.example.rafaelanastacioalves.moby.util.RestServiceTestHelper;
+import com.example.rafaelanastacioalves.moby.util.ViewMatcher;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,7 +27,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.example.rafaelanastacioalves.moby.util.HelperMethods.withHolderContainingId;
 import static org.hamcrest.core.AllOf.allOf;
 
 
@@ -35,7 +35,7 @@ import static org.hamcrest.core.AllOf.allOf;
 public class MainActivityTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class, true, false);
+    public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule<>(MainActivity.class, true, false);
     private String fileNameTripPackagesOKResponse = "trip_packages_ok_response.json";
     private String fileNameTripPackagesAditionalOKResponse = "trip_packages_aditional_ok_response.json";
     private MockWebServer server;
@@ -74,6 +74,31 @@ public class MainActivityTest {
 
         onView(allOf(withId(R.id.main_entity_title_textview), withText("Disney Premium"))).check(matches(isDisplayed()));
 
+    }
+
+    @Test
+    public void should_show2Items_WhenAPIGives2Items() throws IOException{
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(RestServiceTestHelper.getStringFromFile(
+                        InstrumentationRegistry.getInstrumentation().getContext()
+                        , fileNameTripPackagesOKResponse)
+                )
+        );
+
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(RestServiceTestHelper.getStringFromFile(
+                        InstrumentationRegistry.getInstrumentation().getContext()
+                        , fileNameTripPackagesAditionalOKResponse)
+                )
+        );
+
+        Intent intent = new Intent();
+        mainActivityActivityTestRule.launchActivity(intent);
+        int testedPosition = 1;
+        onView(withId(R.id.trip_package_list)).perform(RecyclerViewActions.scrollToPosition(testedPosition));
+        onView(withId(R.id.trip_package_list)).check(matches(ViewMatcher.showMainItemWithTitle("Disney Premium Additional", testedPosition)));
     }
 
 
